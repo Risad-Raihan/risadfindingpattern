@@ -1,34 +1,31 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   images: {
-    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'risadfindingpattern.vercel.app',
       },
     ],
-    minimumCacheTTL: 0,
+    domains: ['localhost'],
+    unoptimized: false,
+    minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  headers: async () => {
+  async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png)',
-        locale: false,
+        source: '/profile.jpg',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=0, must-revalidate',
-          }
+          },
         ],
       },
     ]
