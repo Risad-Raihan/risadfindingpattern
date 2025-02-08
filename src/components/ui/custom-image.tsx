@@ -15,7 +15,13 @@ interface CustomImageProps {
 
 export function CustomImage({ src, alt, className, fill, width, height, priority }: CustomImageProps) {
   const [isLoading, setLoading] = useState(true)
-  const imageSrc = src.startsWith('http') ? src : `${process.env.NEXT_PUBLIC_VERCEL_URL || ''}${src}`
+  
+  // Handle image path
+  const imageSrc = src.startsWith('http') 
+    ? src 
+    : src.startsWith('/') 
+      ? src 
+      : `/${src}`
 
   return (
     <div className={`relative ${className || ''} ${isLoading ? 'animate-pulse bg-muted' : ''}`}>
@@ -28,8 +34,8 @@ export function CustomImage({ src, alt, className, fill, width, height, priority
         height={!fill ? height : undefined}
         priority={priority}
         onLoad={() => setLoading(false)}
-        onLoadingComplete={() => setLoading(false)}
         quality={90}
+        loading={priority ? "eager" : "lazy"}
       />
     </div>
   )
