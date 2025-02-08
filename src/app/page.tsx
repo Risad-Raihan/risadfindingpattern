@@ -93,7 +93,7 @@ export default function HomePage() {
               
               <div className="absolute inset-[3px] rounded-full overflow-hidden bg-background transform transition-transform duration-500 group-hover:scale-110">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_VERCEL_URL || ''}/profile.jpg`}
+                  src="/profile.jpg"
                   alt="Profile picture"
                   fill
                   className="object-cover transition-transform duration-700 ease-out"
@@ -208,7 +208,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-[1fr,1.5fr] gap-12 items-center">
             <motion.div variants={fadeInUp} className="relative aspect-square rounded-3xl overflow-hidden border-4 border-purple-500/20 mx-auto md:mx-0 w-80 md:w-full max-w-[400px] shadow-2xl">
               <Image
-                src={`${process.env.NEXT_PUBLIC_VERCEL_URL || ''}/profile.jpg`}
+                src="/profile.jpg"
                 alt="Risad Raihan Malik"
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
