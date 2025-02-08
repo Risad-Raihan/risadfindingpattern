@@ -1,17 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-    domains: ['localhost', 'vercel.app'],
-    minimumCacheTTL: 60,
+    unoptimized: true,
   },
   reactStrictMode: true,
-  output: 'standalone',
 }
 
 module.exports = nextConfig
