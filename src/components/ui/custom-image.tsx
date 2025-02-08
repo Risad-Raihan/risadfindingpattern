@@ -17,12 +17,8 @@ export function CustomImage({ src, alt, className, fill, width, height, priority
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  // Handle image path
-  const imageSrc = src.startsWith('http') 
-    ? src 
-    : src.startsWith('/') 
-      ? src 
-      : `/${src}`
+  // Force timestamp to prevent caching
+  const imageSrc = `${src}?t=${new Date().getTime()}`
 
   if (error) {
     return (
@@ -55,9 +51,11 @@ export function CustomImage({ src, alt, className, fill, width, height, priority
         priority={priority}
         quality={100}
         onLoadingComplete={() => setLoading(false)}
-        onError={() => setError(true)}
+        onError={(e) => {
+          console.error('Image load error:', e);
+          setError(true);
+        }}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        loading={priority ? "eager" : "lazy"}
       />
     </div>
   )
