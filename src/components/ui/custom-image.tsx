@@ -13,29 +13,22 @@ interface CustomImageProps {
   priority?: boolean
 }
 
-export function CustomImage({ src, alt, className, fill, width, height, priority }: CustomImageProps) {
+export function CustomImage({ src, alt, className, fill, width, height, priority = false }: CustomImageProps) {
   const [isLoading, setLoading] = useState(true)
-  
-  // Handle image path
-  const imageSrc = src.startsWith('http') 
-    ? src 
-    : src.startsWith('/') 
-      ? src 
-      : `/${src}`
 
   return (
-    <div className={`relative ${className || ''} ${isLoading ? 'animate-pulse bg-muted' : ''}`}>
+    <div className={`relative overflow-hidden ${className || ''} ${isLoading ? 'animate-pulse bg-muted' : ''}`}>
       <Image
-        src={imageSrc}
+        src={src}
         alt={alt}
-        className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+        className={`duration-700 ease-in-out ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}`}
         fill={fill}
         width={!fill ? width : undefined}
         height={!fill ? height : undefined}
         priority={priority}
-        onLoad={() => setLoading(false)}
-        quality={90}
-        loading={priority ? "eager" : "lazy"}
+        quality={100}
+        onLoadingComplete={() => setLoading(false)}
+        unoptimized
       />
     </div>
   )
