@@ -815,16 +815,8 @@ export default function HomePage() {
             <p className="text-sm text-muted-foreground text-center">
               © {new Date().getFullYear()} Finding Patterns. All rights reserved.
             </p>
-            <div className="flex items-center space-x-4">
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">
-                Terms of Service
-              </Link>
-            </div>
           </div>
-    </div>
+        </div>
       </footer>
     </motion.div>
   )
