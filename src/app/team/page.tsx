@@ -239,7 +239,7 @@ const teamMembers = [
   {
     name: "Ahmed Sifat -E- Rabbi",
     role: "Audio Visual Producer, VJ, Light Designer",
-    image: "/sifat.png",
+    image: "/sifat.jpg",
     portfolio: [
       "https://www.behance.net/gallery/186999391/Mujib-100-Projection-Mapping",
       "https://www.behance.net/gallery/186999815/BD50-Projection-Mapping-on-National-Parliament",
