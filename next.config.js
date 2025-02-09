@@ -9,7 +9,7 @@ const nextConfig = {
     ],
     domains: ['localhost'],
     unoptimized: false,
-    minimumCacheTTL: 0,
+    minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/webp'],
@@ -20,11 +20,20 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/profile.jpg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'public, max-age=3600, must-revalidate',
           },
         ],
       },

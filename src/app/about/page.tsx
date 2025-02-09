@@ -120,6 +120,8 @@ export default function AboutPage() {
                   fill
                   className="object-cover hover:scale-110 transition-transform duration-500"
                   priority
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-pink-500/10" />
               </div>
