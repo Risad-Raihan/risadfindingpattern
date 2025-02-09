@@ -101,8 +101,14 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, 400px"
                   quality={100}
                   loading="eager"
+                  unoptimized
                   onError={(e) => {
                     console.error('Image load error:', e);
+                    // Attempt to reload the image
+                    const imgElement = e.target as HTMLImageElement;
+                    if (imgElement) {
+                      imgElement.src = '/profile.jpg?' + new Date().getTime();
+                    }
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
