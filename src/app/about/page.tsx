@@ -126,10 +126,12 @@ export default function AboutPage() {
                   unoptimized
                   onError={(e) => {
                     console.error('Image load error:', e);
-                    // Attempt to reload the image
+                    // Remove the reload attempt to prevent infinite loop
                     const imgElement = e.target as HTMLImageElement;
                     if (imgElement) {
-                      imgElement.src = '/profile.jpg?' + new Date().getTime();
+                      imgElement.style.display = 'none';
+                      // Show a fallback
+                      imgElement.parentElement?.classList.add('bg-muted');
                     }
                   }}
                 />

@@ -104,10 +104,12 @@ export default function HomePage() {
                   unoptimized
                   onError={(e) => {
                     console.error('Image load error:', e);
-                    // Attempt to reload the image
+                    // Remove the reload attempt to prevent infinite loop
                     const imgElement = e.target as HTMLImageElement;
                     if (imgElement) {
-                      imgElement.src = '/profile.jpg?' + new Date().getTime();
+                      imgElement.style.display = 'none';
+                      // Show a fallback
+                      imgElement.parentElement?.classList.add('bg-muted');
                     }
                   }}
                 />
@@ -221,9 +223,21 @@ export default function HomePage() {
                 alt="Risad Raihan Malik"
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
-                sizes="(max-width: 768px) 100vw, 400px"
+                priority
                 quality={100}
+                sizes="(max-width: 768px) 100vw, 400px"
                 loading="eager"
+                unoptimized
+                onError={(e) => {
+                  console.error('Image load error:', e);
+                  // Remove the reload attempt to prevent infinite loop
+                  const imgElement = e.target as HTMLImageElement;
+                  if (imgElement) {
+                    imgElement.style.display = 'none';
+                    // Show a fallback
+                    imgElement.parentElement?.classList.add('bg-muted');
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-pink-500/10" />
             </motion.div>
