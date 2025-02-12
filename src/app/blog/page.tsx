@@ -12,7 +12,7 @@ import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
-import type { BlogPost } from "@/types/contentful"
+import type { Entry } from 'contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -69,8 +69,41 @@ const staggerContainer = {
   }
 }
 
+interface ContentfulBlogPost extends Entry<any> {
+  fields: {
+    title: string
+    slug: string
+    author: {
+      fields: {
+        name: string
+        bio: string
+        avatar: {
+          fields: {
+            file: {
+              url: string
+            }
+          }
+        }
+      }
+    }
+    featuredImage: {
+      fields: {
+        file: {
+          url: string
+        }
+      }
+    }
+    excerpt: string
+    content: any
+    categories: string[]
+    tags: string[]
+    publishedDate: string
+    readingTime: number
+  }
+}
+
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [posts, setPosts] = useState<ContentfulBlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
@@ -79,7 +112,7 @@ export default function BlogPage() {
     async function fetchPosts() {
       try {
         const fetchedPosts = await getAllBlogPosts()
-        setPosts(fetchedPosts)
+        setPosts(fetchedPosts as ContentfulBlogPost[])
       } catch (error) {
         console.error("Error fetching posts:", error)
       } finally {
