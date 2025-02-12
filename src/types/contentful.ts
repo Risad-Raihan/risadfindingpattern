@@ -1,14 +1,15 @@
 import type { Document } from '@contentful/rich-text-types';
-import type { Asset, Entry } from 'contentful';
+import type { Asset, Entry, EntrySkeletonType, EntrySys } from 'contentful';
 
-export interface AuthorFields {
+export interface AuthorFields extends EntrySkeletonType {
   name: string;
   bio: string;
   avatar: Asset;
   socialLinks: string[];
+  contentTypeId: 'author';
 }
 
-export interface BlogPostFields {
+export interface BlogPostFields extends EntrySkeletonType {
   title: string;
   slug: string;
   author: Entry<AuthorFields>;
@@ -19,10 +20,11 @@ export interface BlogPostFields {
   tags: string[];
   publishedDate: string;
   readingTime: number;
+  contentTypeId: 'blogPost';
 }
 
 export interface Author extends Entry<AuthorFields> {
-  sys: {
+  sys: EntrySys & {
     contentType: {
       sys: {
         id: 'author';
@@ -32,7 +34,7 @@ export interface Author extends Entry<AuthorFields> {
 }
 
 export interface BlogPost extends Entry<BlogPostFields> {
-  sys: {
+  sys: EntrySys & {
     contentType: {
       sys: {
         id: 'blogPost';
