@@ -102,7 +102,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     async function fetchPost() {
       try {
         const fetchedPost = await getBlogPostBySlug(params.slug)
-        setPost(fetchedPost)
+        if (fetchedPost) {
+          setPost(fetchedPost)
+        }
       } catch (error) {
         console.error("Error fetching post:", error)
       } finally {

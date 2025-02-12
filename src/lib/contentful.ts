@@ -15,30 +15,30 @@ export const previewClient = createClient({
 export const getClient = (preview: boolean) => (preview ? previewClient : client);
 
 export async function getAllBlogPosts() {
-  const response = await client.getEntries<BlogPost>({
+  const response = await client.getEntries({
     content_type: 'blogPost',
-    order: '-fields.publishedDate',
+    order: ['-fields.publishedDate'],
   });
 
-  return response.items;
+  return response.items as BlogPost[];
 }
 
 export async function getBlogPostBySlug(slug: string) {
-  const response = await client.getEntries<BlogPost>({
+  const response = await client.getEntries({
     content_type: 'blogPost',
     'fields.slug': slug,
     limit: 1,
   });
 
-  return response.items[0];
+  return response.items[0] as BlogPost;
 }
 
 export async function getRecentBlogPosts(limit = 3) {
-  const response = await client.getEntries<BlogPost>({
+  const response = await client.getEntries({
     content_type: 'blogPost',
-    order: '-fields.publishedDate',
+    order: ['-fields.publishedDate'],
     limit,
   });
 
-  return response.items;
+  return response.items as BlogPost[];
 } 
