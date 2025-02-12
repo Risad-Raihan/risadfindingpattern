@@ -1,31 +1,22 @@
 import type { Document } from '@contentful/rich-text-types';
 import type { Asset, Entry } from 'contentful';
 
-export interface Author {
+export interface AuthorSkeleton {
+  contentTypeId: 'author'
   fields: {
     name: string;
     bio: string;
     avatar: Asset;
     socialLinks: string[];
-  };
-  sys: {
-    id: string;
-    type: string;
-    contentType: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-  };
+  }
 }
 
-export interface BlogPost {
+export interface BlogPostSkeleton {
+  contentTypeId: 'blogPost'
   fields: {
     title: string;
     slug: string;
-    author: Author;
+    author: Entry<AuthorSkeleton>;
     featuredImage: Asset;
     excerpt: string;
     content: Document;
@@ -33,16 +24,13 @@ export interface BlogPost {
     tags: string[];
     publishedDate: string;
     readingTime: number;
-  };
-  sys: {
-    id: string;
-    type: string;
-    contentType: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-  };
+  }
+}
+
+export type Author = Entry<AuthorSkeleton>
+export type BlogPost = Entry<BlogPostSkeleton>
+
+// Type guard to check if an entry is a BlogPost
+export function isBlogPost(entry: any): entry is BlogPost {
+  return entry.sys.contentType.sys.id === 'blogPost';
 } 
