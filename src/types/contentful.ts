@@ -1,14 +1,14 @@
 import type { Document } from '@contentful/rich-text-types';
 import type { Asset, Entry } from 'contentful';
 
-interface AuthorFields {
+export interface AuthorFields {
   name: string;
   bio: string;
   avatar: Asset;
   socialLinks: string[];
 }
 
-interface BlogPostFields {
+export interface BlogPostFields {
   title: string;
   slug: string;
   author: Entry<AuthorFields>;
@@ -21,8 +21,25 @@ interface BlogPostFields {
   readingTime: number;
 }
 
-export type Author = Entry<AuthorFields>
-export type BlogPost = Entry<BlogPostFields>
+export interface Author extends Entry<AuthorFields> {
+  sys: {
+    contentType: {
+      sys: {
+        id: 'author';
+      };
+    };
+  };
+}
+
+export interface BlogPost extends Entry<BlogPostFields> {
+  sys: {
+    contentType: {
+      sys: {
+        id: 'blogPost';
+      };
+    };
+  };
+}
 
 // Type guard to check if an entry is a BlogPost
 export function isBlogPost(entry: any): entry is BlogPost {

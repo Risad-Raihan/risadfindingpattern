@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
-import type { BlogPost } from "@/types/contentful"
+import type { Entry } from 'contentful'
 
 const richTextOptions = {
   renderMark: {
@@ -94,8 +94,41 @@ const richTextOptions = {
   },
 }
 
+interface ContentfulBlogPost extends Entry<any> {
+  fields: {
+    title: string
+    slug: string
+    author: {
+      fields: {
+        name: string
+        bio: string
+        avatar: {
+          fields: {
+            file: {
+              url: string
+            }
+          }
+        }
+      }
+    }
+    featuredImage: {
+      fields: {
+        file: {
+          url: string
+        }
+      }
+    }
+    excerpt: string
+    content: any
+    categories: string[]
+    tags: string[]
+    publishedDate: string
+    readingTime: number
+  }
+}
+
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const [post, setPost] = useState<BlogPost | null>(null)
+  const [post, setPost] = useState<ContentfulBlogPost | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -103,7 +136,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       try {
         const fetchedPost = await getBlogPostBySlug(params.slug)
         if (fetchedPost) {
-          setPost(fetchedPost)
+          setPost(fetchedPost as ContentfulBlogPost)
         }
       } catch (error) {
         console.error("Error fetching post:", error)
@@ -129,7 +162,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     )
   }
 
-  if (!post) {
+  if (!post || !post.fields) {
     return (
       <div className="container py-24 text-center">
         <h1 className="text-2xl font-bold mb-4">Post not found</h1>
@@ -143,6 +176,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </div>
     )
   }
+
+  const { 
+    title, 
+    categories, 
+    author, 
+    publishedDate, 
+    readingTime, 
+    featuredImage, 
+    excerpt, 
+    content, 
+    tags 
+  } = post.fields
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
@@ -170,7 +215,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
-              {post.fields.categories.map((category) => (
+              {categories.map((category) => (
                 <Badge key={category} variant="secondary" className="bg-primary/10 hover:bg-primary/20">
                   {category}
                 </Badge>
@@ -178,21 +223,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
-              {post.fields.title}
+              {title}
             </h1>
 
             <div className="flex flex-wrap gap-4 text-muted-foreground">
               <div className="flex items-center gap-1">
                 <User className="w-4 h-4" />
-                <span>{post.fields.author.fields.name}</span>
+                <span>{author.fields.name}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                <time>{new Date(post.fields.publishedDate).toLocaleDateString()}</time>
+                <time>{new Date(publishedDate).toLocaleDateString()}</time>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
-                <span>{post.fields.readingTime} min read</span>
+                <span>{readingTime} min read</span>
               </div>
             </div>
           </div>
@@ -200,8 +245,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           {/* Featured Image */}
           <div className="aspect-[21/9] relative rounded-xl overflow-hidden">
             <Image
-              src={`https:${post.fields.featuredImage.fields.file.url}`}
-              alt={post.fields.title}
+              src={`https:${featuredImage.fields.file.url}`}
+              alt={title}
               fill
               className="object-cover"
               priority
@@ -214,16 +259,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <Card className="max-w-4xl mx-auto p-8 md:p-12">
           <div className="mb-8">
             <p className="text-xl text-muted-foreground italic">
-              {post.fields.excerpt}
+              {excerpt}
             </p>
           </div>
-          {documentToReactComponents(post.fields.content, richTextOptions)}
+          {documentToReactComponents(content, richTextOptions)}
         </Card>
 
         {/* Tags */}
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2">
-            {post.fields.tags.map((tag) => (
+            {tags.map((tag) => (
               <Badge key={tag} variant="outline" className="hover:bg-primary/10">
                 #{tag}
               </Badge>
@@ -236,15 +281,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="flex items-center gap-6">
             <div className="relative w-20 h-20 rounded-full overflow-hidden">
               <Image
-                src={`https:${post.fields.author.fields.avatar.fields.file.url}`}
-                alt={post.fields.author.fields.name}
+                src={`https:${author.fields.avatar.fields.file.url}`}
+                alt={author.fields.name}
                 fill
                 className="object-cover"
               />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">{post.fields.author.fields.name}</h3>
-              <p className="text-muted-foreground">{post.fields.author.fields.bio}</p>
+              <h3 className="text-xl font-semibold mb-2">{author.fields.name}</h3>
+              <p className="text-muted-foreground">{author.fields.bio}</p>
             </div>
           </div>
         </Card>
