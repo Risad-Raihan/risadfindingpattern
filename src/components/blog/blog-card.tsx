@@ -6,10 +6,43 @@ import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import type { BlogPost } from "@/types/contentful"
+import type { Entry } from 'contentful'
+
+interface ContentfulBlogPost extends Entry<any> {
+  fields: {
+    title: string
+    slug: string
+    author: {
+      fields: {
+        name: string
+        bio: string
+        avatar: {
+          fields: {
+            file: {
+              url: string
+            }
+          }
+        }
+      }
+    }
+    featuredImage: {
+      fields: {
+        file: {
+          url: string
+        }
+      }
+    }
+    excerpt: string
+    content: any
+    categories: string[]
+    tags: string[]
+    publishedDate: string
+    readingTime: number
+  }
+}
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: ContentfulBlogPost;
 }
 
 export function BlogCard({ post }: BlogCardProps) {
