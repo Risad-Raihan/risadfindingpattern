@@ -108,9 +108,12 @@ export default function BlogPage() {
     const categories = Array.isArray(post.fields.categories) ? post.fields.categories : [];
     const matchesCategory = selectedCategory === "all" || categories.includes(selectedCategory);
     
+    const title = typeof post.fields.title === 'string' ? post.fields.title : '';
+    const excerpt = typeof post.fields.excerpt === 'string' ? post.fields.excerpt : '';
+    
     const matchesSearch = !searchQuery || 
-      post.fields.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.fields.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+      title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     
     return matchesCategory && matchesSearch;
   });
