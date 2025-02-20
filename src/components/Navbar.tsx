@@ -45,14 +45,14 @@ export function Navbar() {
       <nav className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <div className="relative w-8 h-8">
-              <Image
-                src="/RFP_logo.png"
-                alt="RFP Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/RFP_logo.png"
+              alt="RFP Logo"
+              width={32}
+              height={32}
+              priority
+              className="h-8 w-8"
+            />
             <span className="hidden font-bold sm:inline-block">RisadFindingPattern</span>
           </Link>
           <div className="hidden md:flex gap-6">
