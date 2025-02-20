@@ -12,7 +12,7 @@ import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
-import type { BlogPost } from '@/types/contentful'
+import type { BlogPost, BlogPostFields } from '@/types/contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -98,11 +98,11 @@ export default function BlogPage() {
   const filteredPosts = posts.filter(post => {
     if (!post?.fields) return false;
     
-    const postCategories = Array.isArray(post.fields.categories) ? post.fields.categories : [];
+    const postCategories = post.fields.categories || [];
     const matchesCategory = selectedCategory === "all" || postCategories.includes(selectedCategory);
     
-    const title = String(post.fields.title || '');
-    const excerpt = String(post.fields.excerpt || '');
+    const title = post.fields.title || '';
+    const excerpt = post.fields.excerpt || '';
     
     const matchesSearch = !searchQuery || 
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -219,57 +219,64 @@ export default function BlogPage() {
             />
           ))
         ) : filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => (
-            <m.div key={post.sys.id} variants={fadeInUp}>
-              <Link href={`/blog/${post.fields.slug}`}>
-                <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
-                  <div className="aspect-video relative">
-                    <Image
-                      src={post.fields.featuredImage?.fields?.file?.url 
-                        ? `https:${post.fields.featuredImage.fields.file.url}`
-                        : '/placeholder.svg'}
-                      alt={String(post.fields.title || 'Blog post')}
-                      fill
-                      className="object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  
-                  <div className="p-6 space-y-4">
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap gap-2">
-                        {Array.isArray(post.fields.categories) && post.fields.categories.map((category) => (
-                          <span
-                            key={category}
-                            className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
-                          >
-                            {category}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold line-clamp-2 hover:text-primary transition-colors">
-                        {String(post.fields.title)}
-                      </h3>
-                      
-                      <p className="text-muted-foreground line-clamp-3">
-                        {String(post.fields.excerpt)}
-                      </p>
-                    </div>
+          filteredPosts.map((post) => {
+            const featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
+            const title = post.fields.title || 'Blog post';
+            const excerpt = post.fields.excerpt || '';
+            const categories = post.fields.categories || [];
+            const readingTime = post.fields.readingTime || 5;
+            const publishedDate = post.fields.publishedDate;
 
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <BookOpen className="w-4 h-4" />
-                        {post.fields.readingTime || 5} min read
+            return (
+              <m.div key={post.sys.id} variants={fadeInUp}>
+                <Link href={`/blog/${post.fields.slug}`}>
+                  <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
+                    <div className="aspect-video relative">
+                      <Image
+                        src={featuredImageUrl ? `https:${featuredImageUrl}` : '/placeholder.svg'}
+                        alt={title}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                    
+                    <div className="p-6 space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap gap-2">
+                          {categories.map((category) => (
+                            <span
+                              key={category}
+                              className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
+                            >
+                              {category}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <h3 className="text-2xl font-bold line-clamp-2 hover:text-primary transition-colors">
+                          {title}
+                        </h3>
+                        
+                        <p className="text-muted-foreground line-clamp-3">
+                          {excerpt}
+                        </p>
                       </div>
-                      <div>
-                        {format(new Date(post.fields.publishedDate), 'MMM d, yyyy')}
+
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <BookOpen className="w-4 h-4" />
+                          {readingTime} min read
+                        </div>
+                        <div>
+                          {format(new Date(publishedDate), 'MMM d, yyyy')}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </Link>
-            </m.div>
-          ))
+                  </Card>
+                </Link>
+              </m.div>
+            );
+          })
         ) : (
           <div className="col-span-full text-center py-12 text-muted-foreground">
             No posts found matching your criteria
