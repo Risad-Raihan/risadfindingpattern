@@ -105,16 +105,27 @@ interface ContentfulBlogPost extends Entry<any> {
 export default function BlogPage() {
   const [posts, setPosts] = useState<ContentfulBlogPost[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     async function fetchPosts() {
       try {
+        setLoading(true)
+        setError(null)
         const fetchedPosts = await getAllBlogPosts()
-        setPosts(fetchedPosts as ContentfulBlogPost[])
+        
+        // Ensure we have valid posts array
+        if (!fetchedPosts || !Array.isArray(fetchedPosts)) {
+          throw new Error('Invalid posts data received')
+        }
+        
+        setPosts(fetchedPosts)
       } catch (error) {
         console.error("Error fetching posts:", error)
+        setError(error instanceof Error ? error.message : 'Failed to fetch posts')
+        setPosts([])
       } finally {
         setLoading(false)
       }
@@ -123,14 +134,32 @@ export default function BlogPage() {
     fetchPosts()
   }, [])
 
-  const filteredPosts = posts.filter(post => {
-    const matchesCategory = selectedCategory === "all" || post.fields.categories.includes(selectedCategory)
-    const matchesSearch = searchQuery === "" || 
-      post.fields.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.fields.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPosts = posts?.filter(post => {
+    if (!post?.fields) return false
+    
+    const matchesCategory = selectedCategory === "all" || 
+      (post.fields.categories || []).includes(selectedCategory)
+    
+    const matchesSearch = !searchQuery || 
+      post.fields.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.fields.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
     
     return matchesCategory && matchesSearch
-  })
+  }) || []
+
+  if (error) {
+    return (
+      <div className="container py-24 text-center">
+        <p className="text-red-500">Error: {error}</p>
+        <Button 
+          onClick={() => window.location.reload()} 
+          className="mt-4"
+        >
+          Try Again
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className="container py-24 space-y-12">

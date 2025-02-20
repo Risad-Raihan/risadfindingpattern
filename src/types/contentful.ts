@@ -9,18 +9,35 @@ export interface AuthorFields extends EntrySkeletonType {
   contentTypeId: 'author';
 }
 
-export interface BlogPostFields extends EntrySkeletonType {
+export interface BlogPostFields {
   title: string;
   slug: string;
-  author: Entry<AuthorFields>;
-  featuredImage: Asset;
+  author?: {
+    fields: {
+      name: string;
+      bio: string;
+      avatar?: {
+        fields: {
+          file: {
+            url: string;
+          };
+        };
+      };
+    };
+  };
+  featuredImage?: {
+    fields: {
+      file: {
+        url: string;
+      };
+    };
+  };
   excerpt: string;
-  content: Document;
-  categories: string[];
-  tags: string[];
-  publishedDate: string;
-  readingTime: number;
-  contentTypeId: 'blogPost';
+  content?: any;
+  categories?: string[];
+  tags?: string[];
+  publishedDate?: string;
+  readingTime?: number;
 }
 
 export interface Author extends Entry<AuthorFields> {
@@ -45,5 +62,36 @@ export interface BlogPost extends Entry<BlogPostFields> {
 
 // Type guard to check if an entry is a BlogPost
 export function isBlogPost(entry: any): entry is BlogPost {
-  return entry.sys.contentType.sys.id === 'blogPost';
+  return entry?.sys?.contentType?.sys?.id === 'blogPost';
+}
+
+export interface ProjectFields extends EntrySkeletonType {
+  title: string;
+  slug: string;
+  description: string;
+  longDescription: Document;
+  technologies: string[];
+  projectType: string;
+  thumbnail: Asset;
+  images: Asset[];
+  liveUrl?: string;
+  githubUrl?: string;
+  featured: boolean;
+  completionDate: string;
+  contentTypeId: 'project';
+}
+
+export interface Project extends Entry<ProjectFields> {
+  sys: EntrySys & {
+    contentType: {
+      sys: {
+        id: 'project';
+      };
+    };
+  };
+}
+
+// Type guard for Project
+export function isProject(entry: any): entry is Project {
+  return entry.sys.contentType.sys.id === 'project';
 } 
