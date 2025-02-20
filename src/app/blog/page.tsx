@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
 import type { BlogPost } from '@/types/contentful'
+import { isBlogPost } from '@/types/contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -101,18 +102,18 @@ export default function BlogPage() {
     fetchPosts()
   }, [])
 
-  const filteredPosts = posts?.filter(post => {
-    if (!post?.fields) return false
+  const filteredPosts = posts.filter(post => {
+    if (!post?.fields) return false;
     
-    const matchesCategory = selectedCategory === "all" || 
-      (post.fields.categories || []).includes(selectedCategory)
+    const categories = Array.isArray(post.fields.categories) ? post.fields.categories : [];
+    const matchesCategory = selectedCategory === "all" || categories.includes(selectedCategory);
     
     const matchesSearch = !searchQuery || 
       post.fields.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.fields.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+      post.fields.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
     
-    return matchesCategory && matchesSearch
-  }) || []
+    return matchesCategory && matchesSearch;
+  });
 
   if (error) {
     return (
