@@ -105,8 +105,8 @@ export default function BlogPage() {
     
     const matchesCategory = selectedCategory === "all" || postCategories.includes(selectedCategory);
     
-    const title = post.fields.title || '';
-    const excerpt = post.fields.excerpt || '';
+    const title = typeof post.fields.title === 'string' ? post.fields.title : '';
+    const excerpt = typeof post.fields.excerpt === 'string' ? post.fields.excerpt : '';
     
     const matchesSearch = !searchQuery || 
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
