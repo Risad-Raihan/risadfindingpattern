@@ -12,7 +12,7 @@ import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
-import type { Entry } from 'contentful'
+import type { BlogPost } from '@/types/contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -69,41 +69,8 @@ const staggerContainer = {
   }
 }
 
-interface ContentfulBlogPost extends Entry<any> {
-  fields: {
-    title: string
-    slug: string
-    author: {
-      fields: {
-        name: string
-        bio: string
-        avatar: {
-          fields: {
-            file: {
-              url: string
-            }
-          }
-        }
-      }
-    }
-    featuredImage: {
-      fields: {
-        file: {
-          url: string
-        }
-      }
-    }
-    excerpt: string
-    content: any
-    categories: string[]
-    tags: string[]
-    publishedDate: string
-    readingTime: number
-  }
-}
-
 export default function BlogPage() {
-  const [posts, setPosts] = useState<ContentfulBlogPost[]>([])
+  const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState("all")

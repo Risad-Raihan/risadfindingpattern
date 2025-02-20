@@ -9,7 +9,7 @@ export interface AuthorFields extends EntrySkeletonType {
   contentTypeId: 'author';
 }
 
-export interface BlogPostFields {
+export interface BlogPostFields extends EntrySkeletonType {
   title: string;
   slug: string;
   author?: {
@@ -38,6 +38,7 @@ export interface BlogPostFields {
   tags?: string[];
   publishedDate?: string;
   readingTime?: number;
+  contentTypeId: 'blogPost';
 }
 
 export interface Author extends Entry<AuthorFields> {
