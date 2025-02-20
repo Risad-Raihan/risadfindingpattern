@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
 import type { BlogPost } from '@/types/contentful'
-import { isBlogPost } from '@/types/contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -83,12 +82,6 @@ export default function BlogPage() {
         setLoading(true)
         setError(null)
         const fetchedPosts = await getAllBlogPosts()
-        
-        // Ensure we have valid posts array
-        if (!fetchedPosts || !Array.isArray(fetchedPosts)) {
-          throw new Error('Invalid posts data received')
-        }
-        
         setPosts(fetchedPosts)
       } catch (error) {
         console.error("Error fetching posts:", error)
@@ -105,11 +98,11 @@ export default function BlogPage() {
   const filteredPosts = posts.filter(post => {
     if (!post?.fields) return false;
     
-    const categories = Array.isArray(post.fields.categories) ? post.fields.categories : [];
-    const matchesCategory = selectedCategory === "all" || categories.includes(selectedCategory);
+    const postCategories = Array.isArray(post.fields.categories) ? post.fields.categories : [];
+    const matchesCategory = selectedCategory === "all" || postCategories.includes(selectedCategory);
     
-    const title = typeof post.fields.title === 'string' ? post.fields.title : '';
-    const excerpt = typeof post.fields.excerpt === 'string' ? post.fields.excerpt : '';
+    const title = String(post.fields.title || '');
+    const excerpt = String(post.fields.excerpt || '');
     
     const matchesSearch = !searchQuery || 
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -235,7 +228,7 @@ export default function BlogPage() {
                       src={post.fields.featuredImage?.fields?.file?.url 
                         ? `https:${post.fields.featuredImage.fields.file.url}`
                         : '/placeholder.svg'}
-                      alt={typeof post.fields.title === 'string' ? post.fields.title : 'Blog post'}
+                      alt={String(post.fields.title || 'Blog post')}
                       fill
                       className="object-cover transition-transform duration-500 hover:scale-105"
                     />
@@ -244,7 +237,7 @@ export default function BlogPage() {
                   <div className="p-6 space-y-4">
                     <div className="space-y-2">
                       <div className="flex flex-wrap gap-2">
-                        {post.fields.categories.map((category) => (
+                        {Array.isArray(post.fields.categories) && post.fields.categories.map((category) => (
                           <span
                             key={category}
                             className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
@@ -255,18 +248,18 @@ export default function BlogPage() {
                       </div>
                       
                       <h3 className="text-2xl font-bold line-clamp-2 hover:text-primary transition-colors">
-                        {post.fields.title}
+                        {String(post.fields.title)}
                       </h3>
                       
                       <p className="text-muted-foreground line-clamp-3">
-                        {post.fields.excerpt}
+                        {String(post.fields.excerpt)}
                       </p>
                     </div>
 
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <BookOpen className="w-4 h-4" />
-                        {post.fields.readingTime} min read
+                        {post.fields.readingTime || 5} min read
                       </div>
                       <div>
                         {format(new Date(post.fields.publishedDate), 'MMM d, yyyy')}
