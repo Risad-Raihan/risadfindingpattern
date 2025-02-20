@@ -232,8 +232,10 @@ export default function BlogPage() {
                 <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
                   <div className="aspect-video relative">
                     <Image
-                      src={`https:${post.fields.featuredImage.fields.file.url}`}
-                      alt={post.fields.title}
+                      src={post.fields.featuredImage?.fields?.file?.url 
+                        ? `https:${post.fields.featuredImage.fields.file.url}`
+                        : '/placeholder.svg'}
+                      alt={typeof post.fields.title === 'string' ? post.fields.title : 'Blog post'}
                       fill
                       className="object-cover transition-transform duration-500 hover:scale-105"
                     />
