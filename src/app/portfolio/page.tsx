@@ -10,7 +10,7 @@ import { motion as m } from "framer-motion"
 import useEmblaCarousel from 'embla-carousel-react'
 import { useCallback, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { ProjectCard } from "@/components/project-card"
+import { ProjectCard } from "../../components/project-card"
 
 const ProjectCarousel = ({ images }: { images: string[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
