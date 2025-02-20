@@ -10,6 +10,7 @@ import { motion as m } from "framer-motion"
 import useEmblaCarousel from 'embla-carousel-react'
 import { useCallback, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import { ProjectCard } from "@/components/project-card"
 
 const ProjectCarousel = ({ images }: { images: string[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
@@ -113,34 +114,47 @@ const capabilities = [
 
 const projects = [
   {
+    title: "Breast Cancer Prediction Web App: Logistic Regression",
+    description: "Developed and deployed a Streamlit web application for predicting breast cancer malignancy (benign/malignant) using a Logistic Regression model. This tool aids in the assessment of breast masses based on cytological characteristics obtained from fine-needle aspirates or other tissue samples. The model leverages key diagnostic features including cell nucleus measurements to calculate the probability of a breast mass being malignant.",
+    image: "/bc.png",
+    technologies: [
+      "Python",
+      "Streamlit",
+      "Scikit-learn",
+      "Logistic Regression",
+      "CSS",
+      "Pickle"
+    ],
+    githubUrl: "https://github.com/yourusername/breast-cancer-prediction",
+    liveUrl: "https://breast-cancer-prediction.streamlit.app",
+    featured: true
+  },
+  {
     title: "Griffith Medical Center - Billing System",
     description: "Developed a billing system for Griffith Medical Center, streamlining patient billing processes and reducing administrative overhead by 15%. The system features an intuitive dashboard for real-time data analysis, enabling staff to quickly identify billing trends and improve revenue cycle management. Role-based access control ensures data security and compliance.",
-    images: ["/griffith1.png", "/griffith2.png", "/griffith3.png", "/griffith4.png", "/griffith5.png", "/griffith6.png", "/griffith7.png"],
-    tags: ["Python", "Flask", "SQLite", "HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Risad-Raihan/medical_billing_desktop",
-    demo: "#",
-    icon: Code2,
-    category: "saas"
+    image: "/griffith1.png",
+    technologies: ["Python", "Flask", "SQLite", "HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/Risad-Raihan/medical_billing_desktop",
+    liveUrl: "#",
+    featured: true
   },
   {
     title: "Hair Wig Manufacturer - NS Hair, Website",
     description: "A well designed website for a hair wig manufacturer. It has a clean and modern design with a responsive layout with great animations.",
-    images: ["/ns.png", "/ns2.png", "/ns3.png", "/ns4.png", "/ns5.png"],
-    tags: ["Next.js", "Tailwind CSS", "React", "TypeScript"],
-    github: "https://github.com/Risad-Raihan/nshair4.0",
-    demo: "https://www.nshairbd.com/",
-    icon: Code2,
-    category: "web"
+    image: "/ns.png",
+    technologies: ["Next.js", "Tailwind CSS", "React", "TypeScript"],
+    githubUrl: "https://github.com/Risad-Raihan/nshair4.0",
+    liveUrl: "https://www.nshairbd.com/",
+    featured: true
   },
   {
     title: "Customer Segmentation Tool",
     description: "An automated tool for customer segmentation using clustering algorithms.",
-    images: ["/placeholder.svg"],
-    tags: ["Python", "scikit-learn", "Streamlit", "MongoDB"],
-    github: "#",
-    demo: "#",
-    icon: LineChart,
-    category: "ai"
+    image: "/placeholder.svg",
+    technologies: ["Python", "scikit-learn", "Streamlit", "MongoDB"],
+    githubUrl: "#",
+    liveUrl: "#",
+    featured: false
   }
 ]
 
@@ -318,200 +332,27 @@ const GitHubActivity = () => {
 }
 
 export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-
-  const filteredProjects = selectedCategory 
-    ? projects.filter(project => project.category === selectedCategory)
-    : projects
-
   return (
-    <div className="container py-24">
-      <m.div
-        className="space-y-16"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        {/* Enhanced Introduction Section */}
-        <m.div 
-          variants={magicReveal}
-          className="relative space-y-8"
-        >
-          <m.div 
-            className="absolute inset-0 bg-gradient-radial from-purple-500/10 to-transparent -z-10"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+    <div className="container py-24 space-y-16">
+      {/* Hero Section */}
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+          My Projects
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          A showcase of my work in machine learning, data science, and web development.
+        </p>
+      </div>
+
+      {/* Projects Grid */}
+      <div className="grid gap-8 md:grid-cols-2">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={index}
+            {...project}
           />
-          <div className="space-y-4">
-            <m.h1 
-              className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{ backgroundSize: "200% 200%" }}
-            >
-              Portfolio
-            </m.h1>
-            <m.div 
-              className="space-y-4 text-xl text-muted-foreground max-w-3xl"
-              variants={fadeInUp}
-            >
-              <p>
-                Welcome to my digital workspace. I build high-impact web applications and intelligent systems that help businesses solve complex problems and achieve their strategic goals.
-              </p>
-              <p>
-                My full-stack development expertise, combined with my analytical abilities and experience in data visualization, allows me to create solutions that are not only technically sound but also provide valuable business insights.
-              </p>
-              <p>
-                I'm passionate about leveraging technology to drive innovation and create positive change. Explore my portfolio below to see how I can help your business thrive. Let's connect!
-              </p>
-              <m.p 
-                className="text-purple-500 font-medium"
-                animate={glowPulse}
-              >
-                Click on any expertise area below to explore related projects!
-              </m.p>
-            </m.div>
-          </div>
-
-          {/* Interactive Category Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {capabilities.map((capability, index) => {
-              const Icon = capability.icon
-              const isSelected = selectedCategory === capability.category
-              return (
-                <m.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="group"
-                  onClick={() => setSelectedCategory(isSelected ? null : capability.category)}
-                  whileHover={{ scale: 1.05 }}
-                  animate={floatAnimation}
-                  custom={index}
-                >
-                  <Card 
-                    className={cn(
-                      "p-6 h-full transition-all duration-300 cursor-pointer backdrop-blur-sm",
-                      "hover:border-purple-500/50 hover:shadow-lg",
-                      isSelected && "border-purple-500 bg-purple-500/5"
-                    )}
-                  >
-                    <m.div 
-                      className="space-y-4"
-                      animate={isSelected ? {
-                        scale: [1, 1.1, 1],
-                        transition: { duration: 0.3 }
-                      } : {}}
-                    >
-                      <m.div 
-                        className={cn(
-                          "w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center",
-                          "group-hover:scale-110 transition-transform duration-300",
-                          isSelected && "bg-purple-500/20"
-                        )}
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Icon className="w-6 h-6 text-purple-500" />
-                      </m.div>
-                      <div>
-                        <h3 className="font-semibold mb-2">{capability.title}</h3>
-                        <p className="text-sm text-muted-foreground">{capability.description}</p>
-                      </div>
-                    </m.div>
-                  </Card>
-                </m.div>
-              )
-            })}
-          </div>
-        </m.div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-[1fr,400px] gap-8">
-          {/* Projects Section */}
-          <m.div variants={fadeInUp} className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">
-                {selectedCategory 
-                  ? `${capabilities.find(c => c.category === selectedCategory)?.title} Projects`
-                  : "Featured Projects"}
-              </h2>
-              {selectedCategory && (
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setSelectedCategory(null)}
-                  className="text-purple-500 hover:text-purple-600"
-                >
-                  View All Projects
-                </Button>
-              )}
-            </div>
-            <div className="grid gap-8">
-              {filteredProjects.map((project, index) => (
-                <m.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="overflow-hidden hover:border-purple-500/50 transition-colors duration-300">
-                    <ProjectCarousel images={project.images} />
-                    <div className="p-6 space-y-4">
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                        <p className="text-muted-foreground">{project.description}</p>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className="px-2 py-1 text-xs rounded-full bg-purple-500/10 text-purple-500"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex gap-4">
-                        <Button variant="outline" asChild>
-                          <Link href={project.github} target="_blank" className="gap-2">
-                            <Github className="w-4 h-4" />
-                            GitHub
-                          </Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                          <Link href={project.demo} target="_blank" className="gap-2">
-                            <ExternalLink className="w-4 h-4" />
-                            Live Demo
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </Card>
-                </m.div>
-              ))}
-            </div>
-          </m.div>
-
-          {/* GitHub Activity Section */}
-          <m.div variants={fadeInUp} className="lg:sticky lg:top-20 lg:self-start">
-            <GitHubActivity />
-          </m.div>
-        </div>
-      </m.div>
+        ))}
+      </div>
     </div>
   )
 } 
