@@ -98,7 +98,11 @@ export default function BlogPage() {
   const filteredPosts = posts.filter(post => {
     if (!post?.fields) return false;
     
-    const postCategories = post.fields.categories || [];
+    // Ensure categories is always an array
+    const postCategories = Array.isArray(post.fields.categories) 
+      ? post.fields.categories 
+      : (typeof post.fields.categories === 'string' ? [post.fields.categories] : []);
+    
     const matchesCategory = selectedCategory === "all" || postCategories.includes(selectedCategory);
     
     const title = post.fields.title || '';
@@ -223,7 +227,9 @@ export default function BlogPage() {
             const featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
             const title = post.fields.title || 'Blog post';
             const excerpt = post.fields.excerpt || '';
-            const categories = post.fields.categories || [];
+            const categories = Array.isArray(post.fields.categories) 
+              ? post.fields.categories 
+              : (typeof post.fields.categories === 'string' ? [post.fields.categories] : []);
             const readingTime = post.fields.readingTime || 5;
             const publishedDate = post.fields.publishedDate;
 
