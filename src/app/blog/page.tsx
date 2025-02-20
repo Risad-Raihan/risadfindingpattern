@@ -223,14 +223,16 @@ export default function BlogPage() {
             />
           ))
         ) : filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => {
+          filteredPosts.map((post: BlogPost) => {
+            if (!post?.fields) return null;
+            
             const featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
-            const title = post.fields.title || 'Blog post';
-            const excerpt = post.fields.excerpt || '';
+            const title = String(post.fields.title || 'Blog post');
+            const excerpt = String(post.fields.excerpt || '');
             const categories = Array.isArray(post.fields.categories) 
               ? post.fields.categories 
               : (typeof post.fields.categories === 'string' ? [post.fields.categories] : []);
-            const readingTime = post.fields.readingTime || 5;
+            const readingTime = Number(post.fields.readingTime) || 5;
             const publishedDate = post.fields.publishedDate;
 
             return (
