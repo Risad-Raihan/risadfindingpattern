@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "RisadFindingPattern - Data Analytics & ML Portfolio",
   description: "ML Developer specializing in SaaS, Web Development, and Analytical Solutions",
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: '/RFP_logo.png',
+    shortcut: '/RFP_logo.png',
+    apple: '/RFP_logo.png',
   },
 }
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="/RFP_logo.png" />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-18K8R4YX4P"

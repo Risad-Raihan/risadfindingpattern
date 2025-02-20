@@ -12,8 +12,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu, BarChart3, Github, Linkedin, Twitter, Instagram } from "lucide-react"
+import { Menu, Github, Linkedin, Twitter, Instagram } from "lucide-react"
 import { SiMedium, SiReddit } from "react-icons/si"
+import Image from "next/image"
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -44,7 +45,14 @@ export function Navbar() {
       <nav className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <BarChart3 className="h-6 w-6" />
+            <div className="relative w-8 h-8">
+              <Image
+                src="/RFP_logo.png"
+                alt="RFP Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             <span className="hidden font-bold sm:inline-block">RisadFindingPattern</span>
           </Link>
           <div className="hidden md:flex gap-6">
