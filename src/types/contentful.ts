@@ -58,6 +58,8 @@ export interface BlogPost {
         id: 'blogPost';
       };
     };
+    createdAt: string;
+    updatedAt: string;
   };
   fields: BlogPostFields;
 }
