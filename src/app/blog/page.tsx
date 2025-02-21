@@ -238,8 +238,11 @@ export default function BlogPage() {
               slug
             } = post.fields;
 
-            // Get image URL from Contentful Asset
-            const imageUrl = featuredImage?.fields?.file?.url
+            // Get image URL from Contentful Asset with proper type checking
+            const imageUrl = typeof featuredImage === 'object' && featuredImage && 'fields' in featuredImage && 
+              featuredImage.fields && typeof featuredImage.fields === 'object' && 
+              'file' in featuredImage.fields && featuredImage.fields.file && 
+              typeof featuredImage.fields.file === 'object' && 'url' in featuredImage.fields.file
               ? `https:${featuredImage.fields.file.url}`
               : '/placeholder.svg';
 
