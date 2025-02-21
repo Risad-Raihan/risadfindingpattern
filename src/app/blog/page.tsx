@@ -238,7 +238,11 @@ export default function BlogPage() {
               slug
             } = post.fields;
 
-            const featuredImageUrl = featuredImage?.fields?.file?.url;
+            // Type assertion for featuredImage
+            const imageUrl = featuredImage && 'fields' in featuredImage && featuredImage.fields.file
+              ? `https:${featuredImage.fields.file.url}`
+              : '/placeholder.svg';
+
             const postCategories = Array.isArray(categories) 
               ? categories 
               : (typeof categories === 'string' ? [categories] : []);
@@ -249,7 +253,7 @@ export default function BlogPage() {
                   <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
                     <div className="aspect-video relative">
                       <Image
-                        src={featuredImageUrl ? `https:${featuredImageUrl}` : '/placeholder.svg'}
+                        src={imageUrl}
                         alt={title}
                         fill
                         className="object-cover transition-transform duration-500 hover:scale-105"
