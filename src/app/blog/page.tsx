@@ -239,8 +239,8 @@ export default function BlogPage() {
             } = post.fields;
 
             // Type assertion for featuredImage
-            const imageUrl = featuredImage && 'fields' in featuredImage && featuredImage.fields.file
-              ? `https:${featuredImage.fields.file.url}`
+            const imageUrl = post.fields.featuredImage?.fields?.file?.url
+              ? `https:${post.fields.featuredImage.fields.file.url}`
               : '/placeholder.svg';
 
             const postCategories = Array.isArray(categories) 
