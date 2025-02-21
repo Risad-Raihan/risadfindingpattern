@@ -5,6 +5,10 @@ import { isBlogPost } from '@/types/contentful';
 export const client = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
+  host: 'cdn.contentful.com',
+  headers: {
+    'Cache-Control': 'no-cache',
+  },
 });
 
 export const previewClient = createClient({
@@ -20,6 +24,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     const response = await client.getEntries({
       content_type: 'blogPost',
       order: ['-fields.publishedDate'],
+      include: 2,
+      limit: 100,
     });
 
     const posts = response.items.map(item => item as unknown as BlogPost);
