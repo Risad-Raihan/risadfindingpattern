@@ -230,10 +230,7 @@ export default function BlogPage() {
             
             // Safely access fields with proper typing
             const fields = post.fields;
-            const featuredImage = fields.featuredImage;
-            const featuredImageUrl = featuredImage && featuredImage.fields && featuredImage.fields.file 
-              ? featuredImage.fields.file.url 
-              : undefined;
+            const featuredImageUrl = fields.featuredImage?.fields?.file?.url;
             const title = String(fields.title || 'Blog post');
             const excerpt = String(fields.excerpt || '');
             const categories = Array.isArray(fields.categories) 
