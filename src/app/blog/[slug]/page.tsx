@@ -12,6 +12,9 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import type { Entry } from 'contentful'
+import { ShareButtons } from "@/components/blog/share-buttons"
+import { Engagement } from "@/components/blog/engagement"
+import { Toaster } from "sonner"
 
 const richTextOptions = {
   renderMark: {
@@ -191,25 +194,32 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+      <Toaster />
       <m.div
         className="container py-24 space-y-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Back Button */}
-        <m.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Button variant="ghost" asChild>
-            <Link href="/blog" className="group">
-              <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-              Back to Blog
-            </Link>
-          </Button>
-        </m.div>
+        {/* Back Button and Share Buttons */}
+        <div className="flex items-center justify-between">
+          <m.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Button variant="ghost" asChild>
+              <Link href="/blog" className="group">
+                <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
+                Back to Blog
+              </Link>
+            </Button>
+          </m.div>
+          <ShareButtons 
+            url={typeof window !== 'undefined' ? window.location.href : ''}
+            title={title}
+          />
+        </div>
 
         {/* Hero Section */}
         <div className="space-y-8">
@@ -303,6 +313,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
           </Card>
         )}
+
+        {/* Engagement Section */}
+        <div className="max-w-4xl mx-auto">
+          <Engagement postId={post.sys.id} />
+        </div>
       </m.div>
     </div>
   )

@@ -12,11 +12,11 @@ interface ContentfulBlogPost extends Entry<any> {
   fields: {
     title: string
     slug: string
-    author: {
+    author?: {
       fields: {
         name: string
         bio: string
-        avatar: {
+        avatar?: {
           fields: {
             file: {
               url: string
@@ -25,7 +25,7 @@ interface ContentfulBlogPost extends Entry<any> {
         }
       }
     }
-    featuredImage: {
+    featuredImage?: {
       fields: {
         file: {
           url: string
@@ -46,7 +46,7 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post }: BlogCardProps) {
-  const { title, slug, excerpt, featuredImage, publishedDate, readingTime, categories, tags } = post.fields;
+  const { title, slug, excerpt, featuredImage, publishedDate, readingTime, categories = [], tags = [] } = post.fields;
   
   return (
     <motion.div
@@ -60,7 +60,9 @@ export function BlogCard({ post }: BlogCardProps) {
         <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
           <div className="aspect-video relative">
             <Image
-              src={`https:${featuredImage.fields.file.url}`}
+              src={featuredImage?.fields?.file?.url 
+                ? `https:${featuredImage.fields.file.url}`
+                : '/placeholder.svg'}
               alt={title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-105"
@@ -93,7 +95,7 @@ export function BlogCard({ post }: BlogCardProps) {
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
-                {readingTime} min read
+                {readingTime || 5} min read
               </div>
             </div>
 

@@ -816,7 +816,7 @@ export default function HomePage() {
               © {new Date().getFullYear()} Finding Patterns. All rights reserved.
             </p>
           </div>
-        </div>
+    </div>
       </footer>
     </motion.div>
   )

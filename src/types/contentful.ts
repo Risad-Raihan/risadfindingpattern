@@ -9,7 +9,7 @@ export interface AuthorFields extends EntrySkeletonType {
   contentTypeId: 'author';
 }
 
-export interface BlogPostFields extends EntrySkeletonType {
+export interface BlogPostFields {
   title: string;
   slug: string;
   author?: {
@@ -33,12 +33,11 @@ export interface BlogPostFields extends EntrySkeletonType {
     };
   };
   excerpt: string;
-  content?: any;
-  categories?: string[];
-  tags?: string[];
-  publishedDate?: string;
-  readingTime?: number;
-  contentTypeId: 'blogPost';
+  content: Document;
+  categories: string[];
+  tags: string[];
+  publishedDate: string;
+  readingTime: number;
 }
 
 export interface Author extends Entry<AuthorFields> {
@@ -51,19 +50,28 @@ export interface Author extends Entry<AuthorFields> {
   };
 }
 
-export interface BlogPost extends Entry<BlogPostFields> {
-  sys: EntrySys & {
+export interface BlogPost {
+  sys: {
+    id: string;
     contentType: {
       sys: {
         id: 'blogPost';
       };
     };
   };
+  fields: BlogPostFields;
 }
 
 // Type guard to check if an entry is a BlogPost
 export function isBlogPost(entry: any): entry is BlogPost {
-  return entry?.sys?.contentType?.sys?.id === 'blogPost';
+  return (
+    entry?.sys?.contentType?.sys?.id === 'blogPost' &&
+    typeof entry.fields?.title === 'string' &&
+    typeof entry.fields?.slug === 'string' &&
+    typeof entry.fields?.excerpt === 'string' &&
+    Array.isArray(entry.fields?.categories) &&
+    Array.isArray(entry.fields?.tags)
+  );
 }
 
 export interface ProjectFields extends EntrySkeletonType {
