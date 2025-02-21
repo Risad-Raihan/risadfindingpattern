@@ -238,9 +238,9 @@ export default function BlogPage() {
               slug
             } = post.fields;
 
-            // Type assertion for featuredImage
-            const imageUrl = post.fields.featuredImage?.fields?.file?.url
-              ? `https:${post.fields.featuredImage.fields.file.url}`
+            // Get image URL from Contentful Asset
+            const imageUrl = featuredImage && 'fields' in featuredImage && featuredImage.fields?.file?.url
+              ? `https:${featuredImage.fields.file.url}`
               : '/placeholder.svg';
 
             const postCategories = Array.isArray(categories) 
