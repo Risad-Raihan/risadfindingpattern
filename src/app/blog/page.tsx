@@ -257,7 +257,7 @@ export default function BlogPage() {
                     <div className="aspect-video relative">
                       <Image
                         src={imageUrl}
-                        alt={title}
+                        alt={String(title)}
                         fill
                         className="object-cover transition-transform duration-500 hover:scale-105"
                       />
