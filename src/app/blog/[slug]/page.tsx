@@ -178,15 +178,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   const { 
-    title, 
-    categories, 
+    title = '', 
+    categories = [], 
     author, 
-    publishedDate, 
-    readingTime, 
+    publishedDate = new Date().toISOString(), 
+    readingTime = 5, 
     featuredImage, 
-    excerpt, 
+    excerpt = '', 
     content, 
-    tags 
+    tags = [] 
   } = post.fields
 
   return (
@@ -215,7 +215,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
+              {Array.isArray(categories) && categories.map((category) => (
                 <Badge key={category} variant="secondary" className="bg-primary/10 hover:bg-primary/20">
                   {category}
                 </Badge>
@@ -227,10 +227,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </h1>
 
             <div className="flex flex-wrap gap-4 text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <User className="w-4 h-4" />
-                <span>{author.fields.name}</span>
-              </div>
+              {author && author.fields && (
+                <div className="flex items-center gap-1">
+                  <User className="w-4 h-4" />
+                  <span>{author.fields.name}</span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
                 <time>{new Date(publishedDate).toLocaleDateString()}</time>
@@ -243,32 +245,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Featured Image */}
-          <div className="aspect-[21/9] relative rounded-xl overflow-hidden">
-            <Image
-              src={`https:${featuredImage.fields.file.url}`}
-              alt={title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-          </div>
+          {featuredImage && featuredImage.fields && featuredImage.fields.file && (
+            <div className="aspect-[21/9] relative rounded-xl overflow-hidden">
+              <Image
+                src={`https:${featuredImage.fields.file.url}`}
+                alt={title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+            </div>
+          )}
         </div>
 
         {/* Content */}
         <Card className="max-w-4xl mx-auto p-8 md:p-12">
-          <div className="mb-8">
-            <p className="text-xl text-muted-foreground italic">
-              {excerpt}
-            </p>
-          </div>
-          {documentToReactComponents(content, richTextOptions)}
+          {excerpt && (
+            <div className="mb-8">
+              <p className="text-xl text-muted-foreground italic">
+                {excerpt}
+              </p>
+            </div>
+          )}
+          {content && documentToReactComponents(content, richTextOptions)}
         </Card>
 
         {/* Tags */}
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {Array.isArray(tags) && tags.map((tag) => (
               <Badge key={tag} variant="outline" className="hover:bg-primary/10">
                 #{tag}
               </Badge>
@@ -277,22 +283,26 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Author Card */}
-        <Card className="max-w-4xl mx-auto p-8">
-          <div className="flex items-center gap-6">
-            <div className="relative w-20 h-20 rounded-full overflow-hidden">
-              <Image
-                src={`https:${author.fields.avatar.fields.file.url}`}
-                alt={author.fields.name}
-                fill
-                className="object-cover"
-              />
+        {author && author.fields && (
+          <Card className="max-w-4xl mx-auto p-8">
+            <div className="flex items-center gap-6">
+              {author.fields.avatar && author.fields.avatar.fields && author.fields.avatar.fields.file && (
+                <div className="relative w-20 h-20 rounded-full overflow-hidden">
+                  <Image
+                    src={`https:${author.fields.avatar.fields.file.url}`}
+                    alt={author.fields.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{author.fields.name}</h3>
+                <p className="text-muted-foreground">{author.fields.bio}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">{author.fields.name}</h3>
-              <p className="text-muted-foreground">{author.fields.bio}</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        )}
       </m.div>
     </div>
   )
