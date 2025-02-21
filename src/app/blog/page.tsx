@@ -225,9 +225,15 @@ export default function BlogPage() {
           ))
         ) : filteredPosts.length > 0 ? (
           filteredPosts.map(post => {
-            if (!post.fields) return null;
+            // Ensure post is a BlogPost type
+            if (!isBlogPost(post)) return null;
+            
+            // Safely access fields with proper typing
             const fields = post.fields;
-            const featuredImageUrl = fields.featuredImage?.fields?.file?.url;
+            const featuredImage = fields.featuredImage;
+            const featuredImageUrl = featuredImage && featuredImage.fields && featuredImage.fields.file 
+              ? featuredImage.fields.file.url 
+              : undefined;
             const title = String(fields.title || 'Blog post');
             const excerpt = String(fields.excerpt || '');
             const categories = Array.isArray(fields.categories) 
