@@ -233,7 +233,7 @@ export default function BlogPage() {
               excerpt = '',
               categories = [],
               readingTime = 5,
-              publishedDate,
+              publishedDate = new Date().toISOString(),
               featuredImage,
               slug
             } = post.fields;
@@ -250,6 +250,9 @@ export default function BlogPage() {
             const titleStr = String(title);
             const excerptStr = String(excerpt);
             const readingTimeNum = typeof readingTime === 'number' ? readingTime : 5;
+            const publishedDateStr = typeof publishedDate === 'string' 
+              ? publishedDate 
+              : new Date().toISOString();
             const postCategories = Array.isArray(categories) 
               ? categories.map(category => String(category))
               : (typeof categories === 'string' ? [categories] : []);
@@ -295,7 +298,7 @@ export default function BlogPage() {
                           {readingTimeNum} min read
                         </div>
                         <div>
-                          {format(new Date(publishedDate), 'MMM d, yyyy')}
+                          {format(new Date(publishedDateStr), 'MMM d, yyyy')}
                         </div>
                       </div>
                     </div>
