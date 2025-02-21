@@ -28,8 +28,30 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       limit: 100,
     });
 
+    console.log('Contentful Response:', {
+      total: response.total,
+      items: response.items.map(item => ({
+        id: item.sys.id,
+        title: item.fields.title,
+        slug: item.fields.slug,
+        publishedDate: item.fields.publishedDate
+      }))
+    });
+
     const posts = response.items.map(item => item as unknown as BlogPost);
-    return posts.filter(isBlogPost);
+    const filteredPosts = posts.filter(isBlogPost);
+    
+    console.log('Filtered Posts:', {
+      total: filteredPosts.length,
+      posts: filteredPosts.map(post => ({
+        id: post.sys.id,
+        title: post.fields.title,
+        slug: post.fields.slug,
+        publishedDate: post.fields.publishedDate
+      }))
+    });
+
+    return filteredPosts;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];

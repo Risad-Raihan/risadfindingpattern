@@ -74,6 +74,7 @@ export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<any>(null)
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -82,11 +83,22 @@ export default function BlogPage() {
       try {
         setLoading(true)
         setError(null)
+        setDebugInfo(null)
+        
+        console.log('Fetching posts...')
         const fetchedPosts = await getAllBlogPosts()
+        console.log('Fetched posts:', fetchedPosts)
+        
         setPosts(fetchedPosts)
+        setDebugInfo({
+          totalPosts: fetchedPosts.length,
+          postIds: fetchedPosts.map(p => p.sys.id),
+          postTitles: fetchedPosts.map(p => p.fields.title)
+        })
       } catch (error) {
         console.error("Error fetching posts:", error)
         setError(error instanceof Error ? error.message : 'Failed to fetch posts')
+        setDebugInfo(error)
         setPosts([])
       } finally {
         setLoading(false)
@@ -118,14 +130,21 @@ export default function BlogPage() {
 
   if (error) {
     return (
-      <div className="container py-24 text-center">
-        <p className="text-red-500">Error: {error}</p>
-        <Button 
-          onClick={() => window.location.reload()} 
-          className="mt-4"
-        >
-          Try Again
-        </Button>
+      <div className="container py-24">
+        <div className="text-center space-y-4">
+          <p className="text-red-500">Error: {error}</p>
+          {debugInfo && (
+            <pre className="text-left bg-muted p-4 rounded-lg overflow-auto max-h-[400px] text-sm">
+              {JSON.stringify(debugInfo, null, 2)}
+            </pre>
+          )}
+          <Button 
+            onClick={() => window.location.reload()} 
+            className="mt-4"
+          >
+            Try Again
+          </Button>
+        </div>
       </div>
     )
   }

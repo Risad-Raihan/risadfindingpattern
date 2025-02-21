@@ -64,14 +64,26 @@ export interface BlogPost {
 
 // Type guard to check if an entry is a BlogPost
 export function isBlogPost(entry: any): entry is BlogPost {
-  return (
+  const isValid = (
     entry?.sys?.contentType?.sys?.id === 'blogPost' &&
     typeof entry.fields?.title === 'string' &&
-    typeof entry.fields?.slug === 'string' &&
-    typeof entry.fields?.excerpt === 'string' &&
-    Array.isArray(entry.fields?.categories) &&
-    Array.isArray(entry.fields?.tags)
+    typeof entry.fields?.slug === 'string'
   );
+
+  if (!isValid) {
+    console.log('Invalid blog post:', {
+      id: entry?.sys?.id,
+      contentType: entry?.sys?.contentType?.sys?.id,
+      hasTitle: typeof entry?.fields?.title === 'string',
+      hasSlug: typeof entry?.fields?.slug === 'string',
+      hasExcerpt: typeof entry?.fields?.excerpt === 'string',
+      hasCategories: Array.isArray(entry?.fields?.categories),
+      hasTags: Array.isArray(entry?.fields?.tags),
+      fields: entry?.fields
+    });
+  }
+
+  return isValid;
 }
 
 export interface ProjectFields extends EntrySkeletonType {
