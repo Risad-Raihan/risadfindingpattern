@@ -239,7 +239,7 @@ export default function BlogPage() {
             } = post.fields;
 
             // Get image URL from Contentful Asset
-            const imageUrl = featuredImage && 'fields' in featuredImage && featuredImage.fields?.file?.url
+            const imageUrl = featuredImage?.fields?.file?.url
               ? `https:${featuredImage.fields.file.url}`
               : '/placeholder.svg';
 
