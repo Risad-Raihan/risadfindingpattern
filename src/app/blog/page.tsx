@@ -249,6 +249,7 @@ export default function BlogPage() {
             // Convert fields to strings to ensure type safety
             const titleStr = String(title);
             const excerptStr = String(excerpt);
+            const readingTimeNum = typeof readingTime === 'number' ? readingTime : 5;
             const postCategories = Array.isArray(categories) 
               ? categories.map(category => String(category))
               : (typeof categories === 'string' ? [categories] : []);
@@ -291,7 +292,7 @@ export default function BlogPage() {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <BookOpen className="w-4 h-4" />
-                          {readingTime} min read
+                          {readingTimeNum} min read
                         </div>
                         <div>
                           {format(new Date(publishedDate), 'MMM d, yyyy')}
