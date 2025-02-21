@@ -224,7 +224,8 @@ export default function BlogPage() {
             />
           ))
         ) : filteredPosts.length > 0 ? (
-          filteredPosts.map((post: BlogPost) => {
+          filteredPosts.map(post => {
+            if (!post.fields) return null;
             const fields = post.fields;
             const featuredImageUrl = fields.featuredImage?.fields?.file?.url;
             const title = String(fields.title || 'Blog post');
