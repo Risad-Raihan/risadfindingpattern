@@ -247,7 +247,7 @@ export default function BlogPage() {
               : '/placeholder.svg';
 
             const postCategories = Array.isArray(categories) 
-              ? categories 
+              ? categories.map(category => String(category))
               : (typeof categories === 'string' ? [categories] : []);
 
             return (
@@ -266,12 +266,12 @@ export default function BlogPage() {
                     <div className="p-6 space-y-4">
                       <div className="space-y-2">
                         <div className="flex flex-wrap gap-2">
-                          {postCategories.map((category) => (
+                          {postCategories.map((category, index) => (
                             <span
-                              key={category}
+                              key={index}
                               className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
                             >
-                              {category}
+                              {String(category)}
                             </span>
                           ))}
                         </div>
