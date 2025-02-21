@@ -246,6 +246,9 @@ export default function BlogPage() {
               ? `https:${featuredImage.fields.file.url}`
               : '/placeholder.svg';
 
+            // Convert fields to strings to ensure type safety
+            const titleStr = String(title);
+            const excerptStr = String(excerpt);
             const postCategories = Array.isArray(categories) 
               ? categories.map(category => String(category))
               : (typeof categories === 'string' ? [categories] : []);
@@ -257,7 +260,7 @@ export default function BlogPage() {
                     <div className="aspect-video relative">
                       <Image
                         src={imageUrl}
-                        alt={String(title)}
+                        alt={titleStr}
                         fill
                         className="object-cover transition-transform duration-500 hover:scale-105"
                       />
@@ -271,17 +274,17 @@ export default function BlogPage() {
                               key={index}
                               className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
                             >
-                              {String(category)}
+                              {category}
                             </span>
                           ))}
                         </div>
                         
                         <h3 className="text-2xl font-bold line-clamp-2 hover:text-primary transition-colors">
-                          {title}
+                          {titleStr}
                         </h3>
                         
                         <p className="text-muted-foreground line-clamp-3">
-                          {excerpt}
+                          {excerptStr}
                         </p>
                       </div>
 
