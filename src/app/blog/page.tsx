@@ -225,23 +225,27 @@ export default function BlogPage() {
           ))
         ) : filteredPosts.length > 0 ? (
           filteredPosts.map(post => {
-            // Ensure post is a BlogPost type
+            // Ensure post is a BlogPost type and access fields
             if (!isBlogPost(post)) return null;
             
-            // Safely access fields with proper typing
-            const fields = post.fields;
-            const featuredImageUrl = fields.featuredImage?.fields?.file?.url;
-            const title = String(fields.title || 'Blog post');
-            const excerpt = String(fields.excerpt || '');
-            const categories = Array.isArray(fields.categories) 
-              ? fields.categories 
-              : (typeof fields.categories === 'string' ? [fields.categories] : []);
-            const readingTime = Number(fields.readingTime) || 5;
-            const publishedDate = fields.publishedDate;
+            const {
+              title = 'Blog post',
+              excerpt = '',
+              categories = [],
+              readingTime = 5,
+              publishedDate,
+              featuredImage,
+              slug
+            } = post.fields;
+
+            const featuredImageUrl = featuredImage?.fields?.file?.url;
+            const postCategories = Array.isArray(categories) 
+              ? categories 
+              : (typeof categories === 'string' ? [categories] : []);
 
             return (
               <m.div key={post.sys.id} variants={fadeInUp}>
-                <Link href={`/blog/${fields.slug}`}>
+                <Link href={`/blog/${slug}`}>
                   <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
                     <div className="aspect-video relative">
                       <Image
@@ -255,7 +259,7 @@ export default function BlogPage() {
                     <div className="p-6 space-y-4">
                       <div className="space-y-2">
                         <div className="flex flex-wrap gap-2">
-                          {categories.map((category) => (
+                          {postCategories.map((category) => (
                             <span
                               key={category}
                               className="px-2 py-1 rounded-full bg-primary/10 text-xs font-medium"
