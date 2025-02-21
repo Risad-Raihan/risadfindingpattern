@@ -224,19 +224,20 @@ export default function BlogPage() {
             />
           ))
         ) : filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => {
-            const featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
-            const title = String(post.fields.title || 'Blog post');
-            const excerpt = String(post.fields.excerpt || '');
-            const categories = Array.isArray(post.fields.categories) 
-              ? post.fields.categories 
-              : (typeof post.fields.categories === 'string' ? [post.fields.categories] : []);
-            const readingTime = Number(post.fields.readingTime) || 5;
-            const publishedDate = post.fields.publishedDate;
+          filteredPosts.map((post: BlogPost) => {
+            const fields = post.fields;
+            const featuredImageUrl = fields.featuredImage?.fields?.file?.url;
+            const title = String(fields.title || 'Blog post');
+            const excerpt = String(fields.excerpt || '');
+            const categories = Array.isArray(fields.categories) 
+              ? fields.categories 
+              : (typeof fields.categories === 'string' ? [fields.categories] : []);
+            const readingTime = Number(fields.readingTime) || 5;
+            const publishedDate = fields.publishedDate;
 
             return (
               <m.div key={post.sys.id} variants={fadeInUp}>
-                <Link href={`/blog/${post.fields.slug}`}>
+                <Link href={`/blog/${fields.slug}`}>
                   <Card className="overflow-hidden hover:border-primary/50 transition-colors duration-300">
                     <div className="aspect-video relative">
                       <Image
