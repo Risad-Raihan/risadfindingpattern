@@ -12,7 +12,8 @@ import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { getAllBlogPosts } from "@/lib/contentful"
-import type { BlogPost, BlogPostFields } from '@/types/contentful'
+import type { BlogPost } from '@/types/contentful'
+import { isBlogPost } from '@/types/contentful'
 
 // Blog categories with icons and descriptions
 const categories = [
@@ -95,8 +96,8 @@ export default function BlogPage() {
     fetchPosts()
   }, [])
 
-  const filteredPosts = posts.filter(post => {
-    if (!post?.fields) return false;
+  const filteredPosts = posts.filter((post): post is BlogPost => {
+    if (!isBlogPost(post)) return false;
     
     // Ensure categories is always an array
     const postCategories = Array.isArray(post.fields.categories) 
@@ -105,8 +106,8 @@ export default function BlogPage() {
     
     const matchesCategory = selectedCategory === "all" || postCategories.includes(selectedCategory);
     
-    const title = typeof post.fields.title === 'string' ? post.fields.title : '';
-    const excerpt = typeof post.fields.excerpt === 'string' ? post.fields.excerpt : '';
+    const title = String(post.fields.title || '');
+    const excerpt = String(post.fields.excerpt || '');
     
     const matchesSearch = !searchQuery || 
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -223,9 +224,7 @@ export default function BlogPage() {
             />
           ))
         ) : filteredPosts.length > 0 ? (
-          filteredPosts.map((post: BlogPost) => {
-            if (!post?.fields) return null;
-            
+          filteredPosts.map((post) => {
             const featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
             const title = String(post.fields.title || 'Blog post');
             const excerpt = String(post.fields.excerpt || '');
