@@ -3,16 +3,18 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink, Play, X } from "lucide-react"
+import { Github, ExternalLink, Play, X, FileText } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import ReactMarkdown from 'react-markdown'
 
 interface ProjectCardProps {
   title: string
   description: string
   image: string
   video?: string
+  readme?: string
   technologies: string[]
   githubUrl?: string
   liveUrl?: string
@@ -24,12 +26,28 @@ export function ProjectCard({
   description,
   image,
   video,
+  readme,
   technologies,
   githubUrl,
   liveUrl,
   featured = false,
 }: ProjectCardProps) {
   const [showVideo, setShowVideo] = useState(false);
+  const [showReadme, setShowReadme] = useState(false);
+  const [readmeContent, setReadmeContent] = useState<string>("");
+
+  const fetchReadme = async () => {
+    if (readme) {
+      try {
+        const response = await fetch(readme);
+        const content = await response.text();
+        setReadmeContent(content);
+        setShowReadme(true);
+      } catch (error) {
+        console.error("Failed to load readme:", error);
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -76,7 +94,7 @@ export function ProjectCard({
               </Badge>
             ))}
           </div>
-          <div className="flex gap-2 pt-4">
+          <div className="flex flex-wrap gap-2 pt-4">
             {githubUrl && (
               <Button variant="outline" size="sm" asChild>
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -99,16 +117,22 @@ export function ProjectCard({
                 Watch Demo
               </Button>
             )}
+            {readme && (
+              <Button variant="outline" size="sm" onClick={fetchReadme}>
+                <FileText className="w-4 h-4 mr-2" />
+                Project Details
+              </Button>
+            )}
           </div>
         </div>
       </Card>
 
       {/* Video Modal */}
       {showVideo && video && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 md:p-8">
-          <div className="relative w-full max-w-5xl">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 md:p-8" onClick={() => setShowVideo(false)}>
+          <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
             <Button 
-              className="absolute -top-12 right-0 rounded-full bg-black/70 hover:bg-black w-10 h-10 p-0"
+              className="absolute -top-12 right-0 rounded-full bg-white hover:bg-white/90 text-black w-10 h-10 p-0 shadow-lg"
               onClick={() => setShowVideo(false)}
             >
               <X className="w-5 h-5" />
@@ -121,6 +145,26 @@ export function ProjectCard({
             >
               Your browser does not support the video tag.
             </video>
+          </div>
+        </div>
+      )}
+
+      {/* Readme Modal */}
+      {showReadme && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 md:p-8" onClick={() => setShowReadme(false)}>
+          <div className="relative w-full max-w-5xl max-h-[80vh] overflow-auto bg-white dark:bg-gray-900 rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <Button 
+              className="absolute top-4 right-4 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-black dark:text-white w-10 h-10 p-0 shadow-lg"
+              onClick={() => setShowReadme(false)}
+            >
+              <X className="w-5 h-5" />
+            </Button>
+            <div className="p-8 markdown-content">
+              <h2 className="text-3xl font-bold mb-6">{title} - Documentation</h2>
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <ReactMarkdown>{readmeContent}</ReactMarkdown>
+              </div>
+            </div>
           </div>
         </div>
       )}

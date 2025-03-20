@@ -63,37 +63,37 @@ const skillCategories = [
     icon: <Brain className="w-8 h-8" />,
     title: "AI & ML",
     color: "from-purple-500 to-pink-500",
-    skills: ["TensorFlow", "PyTorch", "Scikit-learn", "SARIMA", "XGBoost", "Prophet"]
+    skills: ["TensorFlow", "PyTorch", "Hugging Face", "Gemini", "XGBoost", "FAISS"]
   },
   {
     icon: <Database className="w-8 h-8" />,
-    title: "Data & Analytics",
+    title: "NLP & RAG",
     color: "from-blue-500 to-cyan-500",
-    skills: ["SQL", "BigQuery", "Looker", "Power BI", "Tableau", "DBT"]
+    skills: ["LangChain", "Vector Embeddings", "Sentiment Analysis", "NER", "Text Classification", "RAG"]
   },
   {
-    icon: <Laptop className="w-8 h-8" />,
-    title: "Frontend",
-    color: "from-orange-500 to-yellow-500",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
-  },
-  {
-    icon: <Server className="w-8 h-8" />,
-    title: "Backend",
+    icon: <LineChart className="w-8 h-8" />,
+    title: "Predictive Modeling",
     color: "from-green-500 to-emerald-500",
-    skills: ["Python", "Django", "Flask", "FastAPI", "Node.js"]
+    skills: ["SARIMA/SARIMAX", "RFM Analysis", "Churn Prediction", "Time Series", "LSTM"]
+  },
+  {
+    icon: <MessageCircle className="w-8 h-8" />,
+    title: "Computer Vision",
+    color: "from-orange-500 to-yellow-500",
+    skills: ["OpenCV", "YOLO", "R-CNN", "Transfer Learning", "Image Classification"]
   },
   {
     icon: <Cloud className="w-8 h-8" />,
-    title: "Cloud & DevOps",
+    title: "Cloud & Data",
     color: "from-indigo-500 to-purple-500",
-    skills: ["GCP", "Firebase", "Docker", "Airflow"]
+    skills: ["GCP", "BigQuery", "Azure ML", "Looker", "Power BI", "AWS"]
   },
   {
-    icon: <Network className="w-8 h-8" />,
-    title: "Marketing",
+    icon: <Laptop className="w-8 h-8" />,
+    title: "Development",
     color: "from-pink-500 to-rose-500",
-    skills: ["Social Media", "SEO", "Content Strategy", "Analytics"]
+    skills: ["Python", "Flask", "Django", "Git", "Docker", "MLflow"]
   }
 ]
 
@@ -143,7 +143,7 @@ export default function AboutPage() {
                     Hi, I'm Risad Raihan Malik
                   </h1>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    {["Machine Learning Developer", "Data Scientist", "SaaS Expert", "Marketing Strategist"].map((role, index) => (
+                    {["ML Engineer", "Data Scientist", "SaaS Developer", "NLP Specialist"].map((role, index) => (
                       <Badge
                         key={index}
                         variant="secondary"
@@ -155,9 +155,9 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <p className="text-lg text-muted-foreground">
-                  A passionate technologist with expertise in AI, Data Analytics, and Software Engineering. 
-                  Working across three countries, I've gained extensive experience in multi-industry SaaS, 
-                  social media growth, and full-stack development.
+                  Highly motivated AI Engineer with a Master's degree in Artificial Intelligence and 2+ years of
+                  experience in developing and deploying machine learning solutions, with a strong emphasis on
+                  Natural Language Processing. Proven ability to design, develop, and evaluate NLP systems using cutting-edge open-source LLMs and techniques. Expertise in building RAG-based chatbots, sentiment analysis models, and language generation systems.
                 </p>
                 <div className="flex gap-4 justify-center md:justify-start">
                   <Button 

@@ -118,6 +118,7 @@ const projects = [
     description: "An intelligent medical chatbot using Retrieval-Augmented Generation (RAG) technology to provide accurate medical information from trusted references. Integrates knowledge from medical textbooks with proper citations and source references. Features semantic search using vector embeddings, context-aware responses, and an intuitive chat interface.",
     image: "/medibot.png",
     video: "/projects/medibot.mp4",
+    readme: "/projects/medibot_readme.md",
     technologies: [
       "Python",
       "LangChain",
@@ -136,6 +137,7 @@ const projects = [
     description: "A machine learning solution to predict customer churn for telecommunications companies. Features a user-friendly Streamlit interface for real-time predictions, visual results with graphical representation of outcomes, and feature importance visualization. The Random Forest model achieves ~80% accuracy in identifying customers likely to discontinue services.",
     image: "/churn.png",
     video: "/projects/churn.mp4",
+    readme: "/projects/churn_readme.md",
     technologies: [
       "Python", 
       "Scikit-learn", 

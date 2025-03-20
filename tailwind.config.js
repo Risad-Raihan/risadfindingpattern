@@ -129,8 +129,28 @@ module.exports = {
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
         'gradient-conic-to-t': 'conic-gradient(at top, var(--tw-gradient-stops))',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100%',
+            img: {
+              marginTop: '1em',
+              marginBottom: '1em',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 };
   
