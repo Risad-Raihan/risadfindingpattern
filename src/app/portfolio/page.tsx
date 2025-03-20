@@ -114,6 +114,41 @@ const capabilities = [
 
 const projects = [
   {
+    title: "MediBot: AI-Powered Medical Assistant with RAG",
+    description: "An intelligent medical chatbot using Retrieval-Augmented Generation (RAG) technology to provide accurate medical information from trusted references. Integrates knowledge from medical textbooks with proper citations and source references. Features semantic search using vector embeddings, context-aware responses, and an intuitive chat interface.",
+    image: "/medibot.png",
+    video: "/projects/medibot.mp4",
+    technologies: [
+      "Python",
+      "LangChain",
+      "Google Gemini API",
+      "FAISS",
+      "Streamlit",
+      "HuggingFace",
+      "RAG"
+    ],
+    githubUrl: "https://github.com/Risad-Raihan/Medibot",
+    liveUrl: "#",
+    featured: true
+  },
+  {
+    title: "Telco Customer Churn Prediction",
+    description: "A machine learning solution to predict customer churn for telecommunications companies. Features a user-friendly Streamlit interface for real-time predictions, visual results with graphical representation of outcomes, and feature importance visualization. The Random Forest model achieves ~80% accuracy in identifying customers likely to discontinue services.",
+    image: "/churn.png",
+    video: "/projects/churn.mp4",
+    technologies: [
+      "Python", 
+      "Scikit-learn", 
+      "XGBoost", 
+      "Streamlit", 
+      "Pandas", 
+      "Matplotlib"
+    ],
+    githubUrl: "https://github.com/Risad-Raihan/Telco_customer_churn",
+    liveUrl: "#",
+    featured: true
+  },
+  {
     title: "Breast Cancer Prediction Web App: Logistic Regression",
     description: "Developed and deployed a Streamlit web application for predicting breast cancer malignancy (benign/malignant) using a Logistic Regression model. This tool aids in the assessment of breast masses based on cytological characteristics obtained from fine-needle aspirates or other tissue samples. The model leverages key diagnostic features including cell nucleus measurements to calculate the probability of a breast mass being malignant.",
     image: "/bc.png",

@@ -128,13 +128,11 @@ export default function HomePage() {
                 <span className="block mb-2">Hi, I'm Risad</span>
                 <TypeAnimation
                   sequence={[
-                    "ML Developer",
+                    "ML Engineer",
                     2000,
                     "Data Scientist",
                     2000,
-                    "SaaS Expert",
-                    2000,
-                    "Web Developer",
+                    "SaaS Developer",
                     2000,
                   ]}
                   wrapper="span"
@@ -522,84 +520,44 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-2 gap-6"
             variants={staggerContainer}
           >
-            {/* Web Development */}
+            {/* NLP/RAG Chatbot */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
               <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-purple-500/50">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative space-y-4">
                   <div className="p-3 rounded-xl bg-purple-500/10 w-fit">
-                    <Code2 className="w-6 h-6 text-purple-500" />
+                    <Brain className="w-6 h-6 text-purple-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">Web Development</h3>
-                  <p className="text-muted-foreground">Building modern, responsive web applications with Next.js, React, and TypeScript. Focus on performance and user experience.</p>
+                  <h3 className="text-xl font-semibold">NLP/RAG Chatbot</h3>
+                  <p className="text-muted-foreground">Building advanced conversational AI systems using NLP and Retrieval Augmented Generation for context-aware responses and knowledge retrieval.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Next.js</Badge>
-                    <Badge variant="secondary">React</Badge>
-                    <Badge variant="secondary">TypeScript</Badge>
-                    <Badge variant="secondary">Tailwind</Badge>
+                    <Badge>LangChain</Badge>
+                    <Badge>LLaMA</Badge>
+                    <Badge>Embeddings</Badge>
+                    <Badge>Vector DBs</Badge>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* SaaS Development */}
+            {/* Computer Vision */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
               <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-blue-500/50">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative space-y-4">
                   <div className="p-3 rounded-xl bg-blue-500/10 w-fit">
-                    <Database className="w-6 h-6 text-blue-500" />
+                    <Code2 className="w-6 h-6 text-blue-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">SaaS Development</h3>
-                  <p className="text-muted-foreground">Creating scalable software solutions with cloud infrastructure, microservices architecture, and robust APIs.</p>
+                  <h3 className="text-xl font-semibold">Computer Vision</h3>
+                  <p className="text-muted-foreground">Implementing image classification, object detection, and segmentation systems for various industries from healthcare to retail.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Cloud</Badge>
-                    <Badge variant="secondary">APIs</Badge>
-                    <Badge variant="secondary">Microservices</Badge>
-                    <Badge variant="secondary">DevOps</Badge>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* AI & ML Solutions */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
-              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-green-500/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative space-y-4">
-                  <div className="p-3 rounded-xl bg-green-500/10 w-fit">
-                    <Brain className="w-6 h-6 text-green-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold">AI & ML Solutions</h3>
-                  <p className="text-muted-foreground">Developing intelligent systems, custom ML models, and automation tools for business optimization.</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">TensorFlow</Badge>
-                    <Badge variant="secondary">PyTorch</Badge>
-                    <Badge variant="secondary">NLP</Badge>
-                    <Badge variant="secondary">Computer Vision</Badge>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Data Analytics */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
-              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-orange-500/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative space-y-4">
-                  <div className="p-3 rounded-xl bg-orange-500/10 w-fit">
-                    <BarChart className="w-6 h-6 text-orange-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Data Analytics</h3>
-                  <p className="text-muted-foreground">Transforming raw data into actionable insights through advanced analytics and visualization.</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Power BI</Badge>
-                    <Badge variant="secondary">Tableau</Badge>
-                    <Badge variant="secondary">Python</Badge>
-                    <Badge variant="secondary">SQL</Badge>
+                    <Badge>OpenCV</Badge>
+                    <Badge>YOLO</Badge>
+                    <Badge>RCNN</Badge>
+                    <Badge>Image Processing</Badge>
                   </div>
                 </div>
               </Card>
@@ -607,39 +565,39 @@ export default function HomePage() {
 
             {/* Predictive Modeling */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
-              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-pink-500/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-green-500/50">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative space-y-4">
-                  <div className="p-3 rounded-xl bg-pink-500/10 w-fit">
-                    <LineChart className="w-6 h-6 text-pink-500" />
+                  <div className="p-3 rounded-xl bg-green-500/10 w-fit">
+                    <LineChart className="w-6 h-6 text-green-500" />
                   </div>
                   <h3 className="text-xl font-semibold">Predictive Modeling</h3>
-                  <p className="text-muted-foreground">Building predictive models for forecasting, customer behavior analysis, and risk assessment.</p>
+                  <p className="text-muted-foreground">Developing time series forecasting, recommendation systems, and customer behavior prediction models for data-driven decision making.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Time Series</Badge>
-                    <Badge variant="secondary">Machine Learning</Badge>
-                    <Badge variant="secondary">Statistical Analysis</Badge>
-                    <Badge variant="secondary">Forecasting</Badge>
+                    <Badge>XGBoost</Badge>
+                    <Badge>Time Series</Badge>
+                    <Badge>scikit-learn</Badge>
+                    <Badge>Statistical Analysis</Badge>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Social Media Consultancy */}
+            {/* SaaS Development */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
-              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-indigo-500/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-violet-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-orange-500/50">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative space-y-4">
-                  <div className="p-3 rounded-xl bg-indigo-500/10 w-fit">
-                    <Users2 className="w-6 h-6 text-indigo-500" />
+                  <div className="p-3 rounded-xl bg-orange-500/10 w-fit">
+                    <Database className="w-6 h-6 text-orange-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">Social Media Consultancy</h3>
-                  <p className="text-muted-foreground">Strategic social media management, content creation, and growth strategies for brands.</p>
+                  <h3 className="text-xl font-semibold">SaaS Development</h3>
+                  <p className="text-muted-foreground">Building scalable, cloud-native software solutions with robust architecture, subscription models, and multi-tenant capabilities.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Strategy</Badge>
-                    <Badge variant="secondary">Content</Badge>
-                    <Badge variant="secondary">Analytics</Badge>
-                    <Badge variant="secondary">Growth</Badge>
+                    <Badge>Next.js</Badge>
+                    <Badge>Cloud Architecture</Badge>
+                    <Badge>APIs</Badge>
+                    <Badge>Microservices</Badge>
                   </div>
                 </div>
               </Card>
