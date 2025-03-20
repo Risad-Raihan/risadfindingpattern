@@ -156,14 +156,14 @@ export const projects = [
     description: "Developed a medical question-answering chatbot utilizing Retrieval Augmented Generation (RAG) with Hugging Face Transformers and Google's Gemini. Implemented vector embeddings and similarity search with FAISS to retrieve relevant information from medical documents, enabling accurate and context-aware responses.",
     technologies: ["Python", "Hugging Face", "Gemini", "FAISS", "Vector Embeddings", "RAG", "LLMs"],
     link: "https://github.com/Risad-Raihan/Medibot",
-    image: "/projects/medibot.png"
+    image: "/medibot.png"
   },
   {
     title: "Customer Churn Prediction with MLflow",
     description: "Built a customer churn prediction model using Random Forest with MLflow for experiment tracking, model versioning, and performance monitoring. Deployed the model using Flask to create a REST API for real-time predictions.",
     technologies: ["Python", "Random Forest", "MLflow", "Flask", "Model Deployment", "REST API"],
     link: "https://github.com/Risad-Raihan/Telco_customer_churn",
-    image: "/projects/churn.png"
+    image: "/churn.png"
   },
   {
     title: "Time Series Sales Forecasting with LSTM",
