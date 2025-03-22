@@ -19,7 +19,7 @@ interface Service {
 }
 
 export const bioData = {
-  shortBio: "Highly motivated AI Engineer with a Master's degree in Artificial Intelligence and 2+ years of experience in developing and deploying machine learning solutions, with a strong emphasis on Natural Language Processing. Proven ability to design, develop, and evaluate NLP systems using cutting-edge open-source LLMs and techniques. Expertise in building and deploying NLP applications, including RAG-based chatbots, sentiment analysis models, and language generation systems.",
+  shortBio: "AI Engineer with a Master's in Artificial Intelligence and 2+ years of experience. Skilled in developing and deploying a wide range of machine learning solutions, including NLP, Computer Vision, and Predictive Modeling. Expertise encompasses LLMs, RAG, RCNN, YOLO, and RNN. This experience includes academic study and early career roles in the UK and Malaysia, followed by professional experience in Bangladesh, contributing to the development of chatbots, sentiment analysis, language generation, object detection, and predictive analytics.",
   location: "Dhaka, Bangladesh",
   yearsOfExperience: 3,
   completedProjects: 25,

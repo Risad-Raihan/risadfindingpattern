@@ -149,7 +149,7 @@ export default function HomePage() {
                 className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
                 variants={fadeInUp}
               >
-                A passionate technologist with expertise in AI, Data Analytics, and Software Engineering.
+                An AI Engineer passionate in NLP and Computer vision with a knack of crunching Data and building SaaS
               </motion.p>
 
               <motion.div 
@@ -242,7 +242,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp} className="space-y-6">
               <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">About Me</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a highly motivated full-stack developer and ML enthusiast, constantly exploring new technologies and approaches. I'm passionate about building innovative solutions that push the boundaries of what's possible. My background in software engineering and AI/ML allows me to tackle diverse challenges and deliver creative, effective results. I'm a firm believer in continuous learning and improvement.
+                AI Engineer with a Master's in Artificial Intelligence and 2+ years of experience. Skilled in developing and deploying a wide range of machine learning solutions, including NLP, Computer Vision, and Predictive Modeling. Expertise encompasses LLMs, RAG, RCNN, YOLO, and RNN. This experience includes academic study and early career roles in the UK and Malaysia, followed by professional experience in Bangladesh, contributing to the development of chatbots, sentiment analysis, language generation, object detection, and predictive analytics.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -647,18 +647,18 @@ export default function HomePage() {
           <motion.div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "NS Hair Website",
-                description: "Modern e-commerce website for a hair wig manufacturer",
-                image: "/ns.png",
-                tags: ["Next.js", "React", "Tailwind CSS"],
-                link: "https://www.nshairbd.com"
+                title: "MediBot: AI-Powered Medical Assistant with RAG",
+                description: "An intelligent medical chatbot using Retrieval-Augmented Generation (RAG) technology to provide accurate medical information from trusted references.",
+                image: "/medibot.png",
+                tags: ["Python", "LangChain", "Gemini API", "FAISS", "RAG"],
+                link: "https://github.com/Risad-Raihan/Medibot"
               },
               {
-                title: "Medical Billing System",
-                description: "Desktop application for managing medical billing and analytics",
-                image: "/griffith1.png",
-                tags: ["Python", "Flask", "SQLite"],
-                link: "#"
+                title: "Telco Customer Churn Prediction",
+                description: "A machine learning solution to predict customer churn for telecommunications companies with ~80% accuracy using Random Forest.",
+                image: "/churn.png",
+                tags: ["Python", "Scikit-learn", "XGBoost", "Streamlit"],
+                link: "https://github.com/Risad-Raihan/Telco_customer_churn"
               }
             ].map((project, index) => (
               <motion.div
