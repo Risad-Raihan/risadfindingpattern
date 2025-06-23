@@ -21,11 +21,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { 
     opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.23, 1, 0.32, 1]
-    }
+    y: 0
   }
 }
 
@@ -42,7 +38,6 @@ const shimmer = {
     backgroundPosition: ["200% 0", "-200% 0"],
     transition: {
       duration: 3,
-      ease: "linear",
       repeat: Infinity
     }
   }

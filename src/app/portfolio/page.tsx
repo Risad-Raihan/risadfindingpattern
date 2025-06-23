@@ -220,11 +220,7 @@ const magicReveal = {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
-    background: "none",
-    transition: {
-      duration: 0.8,
-      ease: [0.4, 0, 0.2, 1]
-    }
+    background: "none"
   }
 }
 
@@ -235,8 +231,7 @@ const floatAnimation = {
     transition: {
       duration: 4,
       repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut"
+      repeatType: "reverse"
     }
   }
 }
@@ -250,8 +245,7 @@ const glowPulse = {
     ],
     transition: {
       duration: 2,
-      repeat: Infinity,
-      ease: "easeInOut"
+      repeat: Infinity
     }
   }
 }

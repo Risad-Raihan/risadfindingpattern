@@ -14,50 +14,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { LazyMotion, domAnimation, m } from "framer-motion"
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.23, 1, 0.32, 1]
-    }
-  }
-}
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
-
-const scaleIn = {
-  initial: { scale: 0.9, opacity: 0 },
-  animate: { 
-    scale: 1, 
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.23, 1, 0.32, 1]
-    }
-  }
-}
-
-const floatAnimation = {
-  initial: { y: 0 },
-  animate: {
-    y: [-5, 5, -5],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "linear"
-    }
-  }
-}
-
 const skillCategories = [
   {
     icon: <Brain className="w-8 h-8" />,
@@ -102,16 +58,18 @@ export default function AboutPage() {
     <LazyMotion features={domAnimation} strict>
       <m.div
         className="flex flex-col min-h-screen"
-        initial="initial"
-        animate="animate"
-        variants={staggerContainer}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
       >
         {/* Hero Section */}
         <m.section className="py-20 bg-gradient-to-b from-background to-muted/50">
           <div className="container">
             <m.div 
               className="max-w-6xl mx-auto grid md:grid-cols-[1fr,1.5fr] gap-12 items-center"
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden border-4 border-purple-500/20 mx-auto md:mx-0 w-80 md:w-full max-w-[400px] shadow-2xl">
                 <Image
@@ -190,7 +148,11 @@ export default function AboutPage() {
           <div className="container">
             <m.div className="max-w-6xl mx-auto space-y-16">
               <div className="text-center">
-                <m.div variants={fadeInUp}>
+                <m.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
                   <Cpu className="w-12 h-12 mx-auto text-purple-500 mb-4" />
                   <h2 className="text-3xl font-bold">Skills & Technologies</h2>
                 </m.div>
@@ -198,16 +160,21 @@ export default function AboutPage() {
 
               <m.div 
                 className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12"
-                variants={staggerContainer}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, staggerChildren: 0.1 }}
               >
                 {skillCategories.map((category, index) => (
                   <m.div
                     key={index}
-                    variants={scaleIn}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group relative"
                   >
                     <m.div
-                      variants={floatAnimation}
+                      animate={{ y: [-5, 5, -5] }}
+                      transition={{ duration: 3, repeat: Infinity }}
                       className="relative z-10"
                     >
                       <Card className="relative overflow-hidden backdrop-blur-sm bg-background/80 hover:bg-background/90 transition-all duration-500 border-2 hover:border-primary/50">
@@ -260,7 +227,12 @@ export default function AboutPage() {
           <div className="container">
             <m.div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
               {/* Professional Experience */}
-              <m.div variants={fadeInUp} className="space-y-8">
+              <m.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="space-y-8"
+              >
                 <div className="flex items-center gap-3">
                   <Briefcase className="w-8 h-8 text-purple-500" />
                   <h3 className="text-2xl font-bold">Professional Experience</h3>
@@ -314,7 +286,12 @@ export default function AboutPage() {
               </m.div>
 
               {/* Education & Global Experience */}
-              <m.div variants={fadeInUp} className="space-y-8">
+              <m.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="space-y-8"
+              >
                 <div className="flex items-center gap-3">
                   <GraduationCap className="w-8 h-8 text-purple-500" />
                   <h3 className="text-2xl font-bold">Education & Global Experience</h3>
@@ -376,7 +353,9 @@ export default function AboutPage() {
           <div className="container">
             <m.div 
               className="max-w-2xl mx-auto text-center space-y-6"
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <Rocket className="w-12 h-12 mx-auto text-purple-500" />
               <h2 className="text-3xl font-bold">Let's Build Something Amazing Together!</h2>

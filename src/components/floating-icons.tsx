@@ -49,7 +49,7 @@ const floatingElements = [
     ),
     position: { top: "35%", left: "15%" },
     animate: { rotate: [0, 360] },
-    transition: { duration: 30, repeat: Infinity, ease: "linear" }
+    transition: { duration: 30, repeat: Infinity }
   },
   // Large Comet
   {
@@ -65,7 +65,7 @@ const floatingElements = [
     ),
     position: { top: "40%", right: "10%" },
     animate: { x: [-200, 400], y: [-100, 200], rotate: 15 },
-    transition: { duration: 7, repeat: Infinity, ease: "linear" }
+    transition: { duration: 7, repeat: Infinity }
   },
   // Twinkling Stars Group
   {
@@ -102,7 +102,6 @@ const pathVariants = {
     opacity: 1,
     transition: {
       duration: 2,
-      ease: "easeInOut",
       repeat: Infinity,
       repeatType: "reverse" as const
     }

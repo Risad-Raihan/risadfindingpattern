@@ -2,25 +2,36 @@ import { createClient } from 'contentful';
 import type { BlogPost, Project } from '@/types/contentful';
 import { isBlogPost } from '@/types/contentful';
 
-export const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
+// Check for required environment variables
+const spaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
+const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+const previewToken = process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN;
+
+// Create clients only if environment variables are available
+export const client = spaceId && accessToken ? createClient({
+  space: spaceId,
+  accessToken: accessToken,
   host: 'cdn.contentful.com',
   headers: {
     'Cache-Control': 'no-cache',
   },
-});
+}) : null;
 
-export const previewClient = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN!,
+export const previewClient = spaceId && previewToken ? createClient({
+  space: spaceId,
+  accessToken: previewToken,
   host: 'preview.contentful.com',
-});
+}) : null;
 
 export const getClient = (preview: boolean) => (preview ? previewClient : client);
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   try {
+    if (!client) {
+      console.warn('Contentful client not configured - returning empty blog posts');
+      return [];
+    }
+
     const response = await client.getEntries({
       content_type: 'blogPost',
       order: ['-fields.publishedDate'],
@@ -60,6 +71,11 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
+    if (!client) {
+      console.warn('Contentful client not configured - returning null for blog post');
+      return null;
+    }
+
     const response = await client.getEntries({
       content_type: 'blogPost',
       'fields.slug': slug,
@@ -76,6 +92,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
 export async function getRecentBlogPosts(limit = 3): Promise<BlogPost[]> {
   try {
+    if (!client) {
+      console.warn('Contentful client not configured - returning empty recent blog posts');
+      return [];
+    }
+
     const response = await client.getEntries({
       content_type: 'blogPost',
       order: ['-fields.publishedDate'],
@@ -91,40 +112,80 @@ export async function getRecentBlogPosts(limit = 3): Promise<BlogPost[]> {
 }
 
 export async function getAllProjects() {
-  const response = await client.getEntries({
-    content_type: 'project',
-    order: ['-fields.completionDate'],
-  });
+  if (!client) {
+    console.warn('Contentful client not configured - returning empty projects');
+    return [];
+  }
 
-  return response.items as Project[];
+  try {
+    const response = await client.getEntries({
+      content_type: 'project',
+      order: ['-fields.completionDate'],
+    });
+
+    return response.items as Project[];
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
 }
 
 export async function getFeaturedProjects() {
-  const response = await client.getEntries({
-    content_type: 'project',
-    'fields.featured': true,
-    order: ['-fields.completionDate'],
-  });
+  if (!client) {
+    console.warn('Contentful client not configured - returning empty featured projects');
+    return [];
+  }
 
-  return response.items as Project[];
+  try {
+    const response = await client.getEntries({
+      content_type: 'project',
+      'fields.featured': true,
+      order: ['-fields.completionDate'],
+    });
+
+    return response.items as Project[];
+  } catch (error) {
+    console.error('Error fetching featured projects:', error);
+    return [];
+  }
 }
 
 export async function getProjectBySlug(slug: string) {
-  const response = await client.getEntries({
-    content_type: 'project',
-    'fields.slug': slug,
-    limit: 1,
-  });
+  if (!client) {
+    console.warn('Contentful client not configured - returning null for project');
+    return null;
+  }
 
-  return response.items[0] as Project;
+  try {
+    const response = await client.getEntries({
+      content_type: 'project',
+      'fields.slug': slug,
+      limit: 1,
+    });
+
+    return response.items[0] as Project;
+  } catch (error) {
+    console.error('Error fetching project by slug:', error);
+    return null;
+  }
 }
 
 export async function getProjectsByType(type: string) {
-  const response = await client.getEntries({
-    content_type: 'project',
-    'fields.projectType': type,
-    order: ['-fields.completionDate'],
-  });
+  if (!client) {
+    console.warn('Contentful client not configured - returning empty projects by type');
+    return [];
+  }
 
-  return response.items as Project[];
+  try {
+    const response = await client.getEntries({
+      content_type: 'project',
+      'fields.projectType': type,
+      order: ['-fields.completionDate'],
+    });
+
+    return response.items as Project[];
+  } catch (error) {
+    console.error('Error fetching projects by type:', error);
+    return [];
+  }
 } 
