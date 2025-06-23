@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/Navbar"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Chatbox } from "@/components/ui/chatbox"
 import type { ReactNode } from "react"
 import Script from "next/script"
 
@@ -46,6 +47,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
+            <Chatbox />
           </div>
         </ThemeProvider>
       </body>
