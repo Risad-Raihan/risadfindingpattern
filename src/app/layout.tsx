@@ -10,12 +10,38 @@ import Script from "next/script"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "RisadFindingPattern - Data Analytics & ML Portfolio",
-  description: "ML Developer specializing in SaaS, Web Development, and Analytical Solutions",
+  title: "RisadFindingPattern - ML & AI Portfolio",
+  description: "AI Engineer specializing in LLM Fine-tuning, RAG Chatbots, and Machine Learning Solutions",
   icons: {
     icon: '/RFP_logo.png',
     shortcut: '/RFP_logo.png',
     apple: '/RFP_logo.png',
+  },
+  openGraph: {
+    title: "RisadFindingPattern - ML & AI Portfolio",
+    description: "AI Engineer specializing in LLM Fine-tuning, RAG Chatbots, and Machine Learning Solutions",
+    url: "https://risadfindingpatterns.com",
+    siteName: "RisadFindingPattern",
+    images: [
+      {
+        url: '/RFP_logo.png',
+        width: 800,
+        height: 600,
+        alt: 'RisadFindingPattern Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "RisadFindingPattern - ML & AI Portfolio",
+    description: "AI Engineer specializing in LLM Fine-tuning, RAG Chatbots, and Machine Learning Solutions",
+    images: ['/RFP_logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
