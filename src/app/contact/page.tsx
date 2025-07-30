@@ -274,8 +274,8 @@ export default function ContactPage() {
           <div className="relative space-y-4">
             <h2 className="text-2xl font-bold">Ready to Start a Project?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Whether you need a custom software solution, data analytics, or digital marketing strategy,
-              I'm here to help turn your vision into reality.
+              Whether you need chatbot development, ML model deployment, or SaaS solutions,
+              I'm here to help turn your AI vision into reality with cutting-edge technology.
             </p>
             <Button size="lg" className="group">
               Let's Work Together

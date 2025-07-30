@@ -12,164 +12,28 @@ import { RiUserVoiceFill as SocialIcon } from "react-icons/ri"
 const services = [
   {
     category: "Development Solutions",
-    description: "Cutting-edge development services to bring your digital vision to life",
+    description: "Cutting-edge AI and development services to bring your digital vision to life",
     items: [
       {
-        title: "Web Development",
-        description: "Custom websites and web applications built with modern technologies and best practices",
-        icon: Code2,
-        image: "/ns.png",
-        tags: ["React", "Next.js", "Node.js", "Full Stack"]
+        title: "Chatbot Development",
+        description: "Custom conversational AI solutions with advanced NLP, RAG integration, and API deployment using cutting-edge LLM technologies",
+        icon: Bot,
+        image: "/chat.png",
+        tags: ["HuggingFace", "RAG", "LLM", "API", "NLP", "Deployment"]
+      },
+      {
+        title: "ML Model Development",
+        description: "End-to-end machine learning solutions including churn prediction, sales forecasting, and customer segmentation models with production deployment",
+        icon: Brain,
+        image: "/churn.png",
+        tags: ["Churn Prediction", "Sales Forecasting", "Customer Segmentation", "Model Deployment", "ML Pipeline"]
       },
       {
         title: "SaaS Development",
-        description: "Scalable software-as-a-service solutions tailored to your business needs",
+        description: "Scalable cloud-native software solutions with modern architecture, subscription models, and multi-tenant capabilities",
         icon: Code2,
         image: "/griffith1.png",
-        tags: ["Cloud", "APIs", "Microservices"]
-      },
-      {
-        title: "Chatbot Development",
-        description: "Intelligent conversational AI solutions to enhance customer engagement",
-        icon: Bot,
-        image: "/chat.png",
-        tags: ["AI", "NLP", "Automation"]
-      }
-    ]
-  },
-  {
-    category: "Data Analytics & Customer Segmentation",
-    description: "Transform your data into actionable insights with advanced customer analysis",
-    items: [
-      {
-        title: "Customer Churn Prediction",
-        description: "ML models to predict and prevent customer churn using advanced analytics",
-        icon: Users2,
-        image: "/ai2.png",
-        tags: ["Predictive Analytics", "Customer Retention", "ML Models"]
-      },
-      {
-        title: "RFM Analysis",
-        description: "Customer segmentation using Recency, Frequency, and Monetary analysis",
-        icon: Database,
-        image: "/ai3.png",
-        tags: ["Customer Segmentation", "Behavior Analysis", "Marketing Insights"]
-      },
-      {
-        title: "Business Analytics Consulting",
-        description: "Strategic insights and solutions for small businesses to optimize operations",
-        icon: Lightbulb,
-        image: "/b1.png",
-        tags: ["Strategy", "Optimization", "Growth"]
-      },
-      {
-        title: "Data Analysis",
-        description: "Comprehensive data analysis to uncover patterns and drive decision-making",
-        icon: Database,
-        image: "/b2.png",
-        tags: ["Analytics", "Reporting", "Visualization"]
-      },
-      {
-        title: "Dashboard Development",
-        description: "Interactive dashboards that bring your data to life",
-        icon: LineChart,
-        image: "/b3.png",
-        tags: ["BI Tools", "Real-time", "Interactive"]
-      },
-      {
-        title: "Predictive ML Models",
-        description: "Time series forecasting for inventory and supply chain optimization",
-        icon: LineChart,
-        image: "/b4.png",
-        tags: ["Machine Learning", "Forecasting", "Optimization"]
-      }
-    ]
-  },
-  {
-    category: "AI & Automation",
-    description: "Advanced AI solutions and automation tools to streamline your business operations",
-    items: [
-      {
-        title: "AI Agent Development",
-        description: "Custom AI agents for task automation and workflow optimization",
-        icon: Brain,
-        image: "/ai1.png",
-        tags: ["Task Automation", "Workflow Optimization", "Custom AI"]
-      },
-      {
-        title: "Process Automation",
-        description: "Intelligent automation solutions for repetitive tasks and business processes",
-        icon: Workflow,
-        image: "/ai4.png",
-        tags: ["Business Process", "AI Automation", "Efficiency"]
-      }
-    ]
-  },
-  {
-    category: "Digital Marketing & Social Media",
-    description: "Strategic digital marketing solutions to boost your brand's online presence",
-    items: [
-      {
-        title: "Social Media Marketing",
-        description: "Comprehensive social media strategy, content creation, and community management",
-        icon: SocialIcon,
-        image: "/social.png",
-        tags: ["Strategy", "Content", "Community Management"]
-      },
-      {
-        title: "Ad Campaign Management",
-        description: "Results-driven social media advertising campaigns across multiple platforms",
-        icon: Target,
-        image: "/ads.png",
-        tags: ["Facebook Ads", "Instagram Ads", "LinkedIn Ads"]
-      },
-      {
-        title: "Brand Promotion Strategy",
-        description: "Strategic brand promotion and positioning to increase market visibility",
-        icon: TrendingUp,
-        image: "/brand.png",
-        tags: ["Brand Strategy", "Market Analysis", "Growth"]
-      },
-      {
-        title: "Digital Marketing Consulting",
-        description: "Expert guidance on digital marketing strategies and implementation",
-        icon: Users,
-        image: "/consulting.png",
-        tags: ["Strategy", "ROI Optimization", "Market Research"]
-      }
-    ]
-  },
-  {
-    category: "Creative & Design",
-    description: "Bringing your brand to life with stunning visuals and creative solutions",
-    items: [
-      {
-        title: "Brand Design",
-        description: "Comprehensive brand identity development and design services",
-        icon: Palette,
-        image: "/placeholder.svg",
-        tags: ["Identity", "Guidelines", "Strategy"]
-      },
-      {
-        title: "Graphic Design",
-        description: "Eye-catching visual designs for all your marketing needs",
-        icon: Palette,
-        image: "/placeholder.svg",
-        tags: ["Print", "Digital", "Marketing"]
-      },
-      {
-        title: "3D Architectural Rendering",
-        description: "Photorealistic 3D models for developers and architecture firms",
-        icon: Building2,
-        image: "/placeholder.svg",
-        tags: ["3D Modeling", "Visualization", "Architecture"]
-      },
-      {
-        title: "Motion Design",
-        description: "Dynamic motion graphics and animations for engaging content",
-        icon: Clapperboard,
-        image: "/placeholder.svg",
-        tags: ["Animation", "Video", "Content"]
+        tags: ["Cloud", "APIs", "Microservices", "Scalable", "Subscription"]
       }
     ]
   }

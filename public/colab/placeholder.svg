@@ -1,0 +1,46 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="url(#gradient)"/>
+  
+  <!-- Background Pattern -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+    
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.2);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="225" fill="url(#grid)"/>
+  
+  <!-- Notebook Card -->
+  <rect x="50" y="40" width="300" height="145" rx="8" fill="url(#cardGradient)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <!-- Code Lines -->
+  <rect x="70" y="60" width="120" height="4" rx="2" fill="rgba(255,255,255,0.8)"/>
+  <rect x="70" y="70" width="80" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+  <rect x="70" y="80" width="100" height="4" rx="2" fill="rgba(255,255,255,0.8)"/>
+  <rect x="70" y="90" width="60" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+  <rect x="70" y="100" width="140" height="4" rx="2" fill="rgba(255,255,255,0.8)"/>
+  
+  <!-- Output Section -->
+  <rect x="70" y="120" width="260" height="50" rx="4" fill="rgba(0,0,0,0.3)"/>
+  <rect x="80" y="130" width="40" height="3" rx="1.5" fill="rgba(255,255,255,0.7)"/>
+  <rect x="80" y="140" width="60" height="3" rx="1.5" fill="rgba(255,255,255,0.5)"/>
+  <rect x="80" y="150" width="50" height="3" rx="1.5" fill="rgba(255,255,255,0.7)"/>
+  
+  <!-- Colab Icon -->
+  <circle cx="320" cy="70" r="15" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <text x="320" y="75" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">C</text>
+  
+  <!-- Play Button -->
+  <circle cx="320" cy="140" r="12" fill="rgba(255,255,255,0.9)"/>
+  <polygon points="315,135 315,145 325,140" fill="#667eea"/>
+</svg> 

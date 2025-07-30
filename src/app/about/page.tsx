@@ -19,7 +19,7 @@ const skillCategories = [
     icon: <Brain className="w-8 h-8" />,
     title: "AI & ML",
     color: "from-purple-500 to-pink-500",
-    skills: ["TensorFlow", "PyTorch", "Hugging Face", "Gemini", "XGBoost", "FAISS"]
+    skills: ["TensorFlow", "PyTorch", "HuggingFace", "Gemini", "XGBoost", "FAISS"]
   },
   {
     icon: <Database className="w-8 h-8" />,
@@ -29,15 +29,15 @@ const skillCategories = [
   },
   {
     icon: <LineChart className="w-8 h-8" />,
-    title: "Predictive Modeling",
+    title: "NLP Tools & Toolkits",
     color: "from-green-500 to-emerald-500",
-    skills: ["SARIMA/SARIMAX", "RFM Analysis", "Churn Prediction", "Time Series", "LSTM"]
+    skills: ["HuggingFace", "LM Studio", "Finetuning", "Transformer Models", "NLP Toolkits", "Model Deployment"]
   },
   {
     icon: <MessageCircle className="w-8 h-8" />,
-    title: "Computer Vision",
+    title: "Predictive Modeling",
     color: "from-orange-500 to-yellow-500",
-    skills: ["OpenCV", "YOLO", "R-CNN", "Transfer Learning", "Image Classification"]
+    skills: ["SARIMA/SARIMAX", "RFM Analysis", "Churn Prediction", "Time Series", "LSTM"]
   },
   {
     icon: <Cloud className="w-8 h-8" />,
@@ -101,7 +101,7 @@ export default function AboutPage() {
                     Hi, I'm Risad Raihan Malik
                   </h1>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    {["ML Engineer", "Data Scientist", "SaaS Developer", "NLP Specialist"].map((role, index) => (
+                    {["AI Engineer", "NLP Specialist", "Chatbot Developer", "ML Engineer"].map((role, index) => (
                       <Badge
                         key={index}
                         variant="secondary"
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <p className="text-lg text-muted-foreground">
-                  AI Engineer with a Master's in Artificial Intelligence and 2+ years of experience. Skilled in developing and deploying a wide range of machine learning solutions, including NLP, Computer Vision, and Predictive Modeling. Expertise encompasses LLMs, RAG, RCNN, YOLO, and RNN. This experience includes academic study and early career roles in the UK and Malaysia, followed by professional experience in Bangladesh, contributing to the development of chatbots, sentiment analysis, language generation, object detection, and predictive analytics.
+                  AI Engineer at Ztrios Tech with expertise in developing, finetuning, and deploying LLM models. Currently working extensively with HuggingFace, building chatbots, and implementing RAG systems. Specialized in NLP, transformer models, and machine learning deployment with a Master's in Artificial Intelligence and 2+ years of experience.
                 </p>
                 <div className="flex gap-4 justify-center md:justify-start">
                   <Button 
@@ -243,15 +243,15 @@ export default function AboutPage() {
                     <div className="flex items-center gap-2">
                       <Building2 className="w-6 h-6 text-purple-500" />
                       <div>
-                        <h4 className="text-xl font-semibold">Data Analyst & ML Developer</h4>
-                        <p className="text-muted-foreground">Apon Tech Ltd.</p>
+                        <h4 className="text-xl font-semibold">AI Engineer</h4>
+                        <p className="text-muted-foreground">Ztrios Tech</p>
                       </div>
                     </div>
                     <ul className="space-y-2 ml-8">
                       {[
-                        "Building predictive models for sales forecasting",
-                        "Developing BI dashboards for operations",
-                        "Leading customer segmentation initiatives"
+                        "Developing and finetuning LLM models with HuggingFace",
+                        "Building RAG systems and chatbot solutions",
+                        "Deploying AI models and API endpoints"
                       ].map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <CheckCircle2 className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />

@@ -100,52 +100,42 @@ export const techStack: Record<string, TechItem[]> = {
 
 export const services: Service[] = [
   {
-    title: "NLP/RAG Chatbot Solutions",
-    description: "Building advanced conversational AI systems using cutting-edge NLP and Retrieval Augmented Generation techniques",
+    title: "Chatbot Development",
+    description: "Custom conversational AI solutions with advanced NLP, RAG integration, and API deployment using cutting-edge LLM technologies",
     icon: "brain",
     highlights: [
-      "Custom NLP Model Development",
-      "Sentiment Analysis Systems",
-      "Named Entity Recognition (NER)",
-      "Text Classification & Generation",
-      "RAG-based Knowledge Retrieval",
-      "Chatbot Development with Hugging Face"
+      "HuggingFace Model Integration",
+      "RAG System Development",
+      "LLM Finetuning & Deployment",
+      "API Development & Integration",
+      "NLP Pipeline Implementation",
+      "Chatbot UI/UX Design"
     ],
   },
   {
-    title: "Computer Vision Solutions",
-    description: "Implementing image classification, object detection, and segmentation systems for various industries",
-    icon: "brain",
-    highlights: [
-      "Image Classification Models",
-      "Object Detection (YOLO, R-CNN)",
-      "Transfer Learning Applications",
-      "Computer Vision Pipelines",
-      "Edge Device Deployment"
-    ],
-  },
-  {
-    title: "Predictive Modeling",
-    description: "Developing time series forecasting, recommendation systems, and customer behavior prediction models",
+    title: "ML Model Development",
+    description: "End-to-end machine learning solutions including churn prediction, sales forecasting, and customer segmentation models with production deployment",
     icon: "chart",
     highlights: [
-      "Time Series Analysis (SARIMA, SARIMAX)",
-      "Customer Segmentation (RFM, K-means)",
       "Churn Prediction Models",
-      "Recommendation Systems",
-      "A/B Testing Frameworks"
+      "Sales Forecasting Systems",
+      "Customer Segmentation Analysis",
+      "Model Deployment & APIs",
+      "ML Pipeline Development",
+      "Performance Monitoring"
     ],
   },
   {
-    title: "Data Analytics & Cloud Solutions",
-    description: "Transforming raw data into actionable insights through advanced analytics and cloud infrastructure",
-    icon: "chart",
+    title: "SaaS Development",
+    description: "Scalable cloud-native software solutions with modern architecture, subscription models, and multi-tenant capabilities",
+    icon: "code",
     highlights: [
-      "Cloud Migration (GCP, AWS)",
-      "ETL Pipeline Development",
-      "BigQuery Data Warehousing",
-      "Interactive Dashboard Creation",
-      "Statistical Analysis & Reporting"
+      "Cloud Architecture Design",
+      "API Development",
+      "Microservices Implementation",
+      "Subscription Management",
+      "Multi-tenant Systems",
+      "Scalable Infrastructure"
     ],
   },
 ]

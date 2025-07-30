@@ -44,15 +44,16 @@ const shimmer = {
 }
 
 export default function HomePage() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(true) // Changed to true to bypass loading
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return <LoadingSpinner />
-  }
+  // Temporarily commented out loading check
+  // if (!mounted) {
+  //   return <LoadingSpinner />
+  // }
 
   return (
     <motion.div className="relative">
@@ -123,11 +124,11 @@ export default function HomePage() {
                 <span className="block mb-2">Hi, I'm Risad</span>
                 <TypeAnimation
                   sequence={[
-                    "ML Engineer",
+                    "AI Engineer",
                     2000,
-                    "Data Scientist",
+                    "NLP Specialist",
                     2000,
-                    "SaaS Developer",
+                    "Chatbot Developer",
                     2000,
                   ]}
                   wrapper="span"
@@ -144,7 +145,7 @@ export default function HomePage() {
                 className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
                 variants={fadeInUp}
               >
-                An AI Engineer passionate in NLP and Computer vision with a knack of crunching Data and building SaaS
+                AI Engineer at Ztrios Technologies specializing in LLM finetuning, RAG chatbots, and ML deployment with HuggingFace & cloud infrastructure
               </motion.p>
 
               <motion.div 
@@ -237,7 +238,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp} className="space-y-6">
               <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">About Me</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                AI Engineer with a Master's in Artificial Intelligence and 2+ years of experience. Skilled in developing and deploying a wide range of machine learning solutions, including NLP, Computer Vision, and Predictive Modeling. Expertise encompasses LLMs, RAG, RCNN, YOLO, and RNN. This experience includes academic study and early career roles in the UK and Malaysia, followed by professional experience in Bangladesh, contributing to the development of chatbots, sentiment analysis, language generation, object detection, and predictive analytics.
+                AI Engineer at Ztrios Technologies with a Master's in Artificial Intelligence and 3+ years of experience. I specialize in finetuning opensource models, developing RAG chatbots, and deploying ML solutions using HuggingFace, Docker, GCP, vLLM, and Runpod. I build robust APIs with FastAPI and Rust, and create modern frontends with Next.js and Flutter.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -252,7 +253,7 @@ export default function HomePage() {
                     <Briefcase className="w-5 h-5 text-purple-500" />
                     <span className="font-medium">Experience</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">3+ Years in Tech Industry</p>
+                  <p className="text-sm text-muted-foreground">3+ Years in AI & Tech Industry</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-4 pt-4">
@@ -369,8 +370,8 @@ export default function HomePage() {
                   <div className="flex items-center gap-2">
                     <Building2 className="w-5 h-5 text-pink-500" />
                     <div>
-                      <h4 className="text-lg font-semibold">Data Analyst & ML Developer</h4>
-                      <p className="text-xs text-muted-foreground">Apon Tech Ltd. | Apr 2024 - Present</p>
+                      <h4 className="text-lg font-semibold">AI Engineer</h4>
+                      <p className="text-xs text-muted-foreground">Ztrios Technologies Ltd | June 2024 - Present</p>
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -379,22 +380,62 @@ export default function HomePage() {
                       <ul className="text-sm space-y-1">
                         <li className="flex items-start gap-1.5">
                           <span className="h-1.5 w-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0" />
+                          <span>Finetuning opensource models with HuggingFace</span>
+                        </li>
+                        <li className="flex items-start gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0" />
+                          <span>Building RAG chatbots and deployment systems</span>
+                        </li>
+                        <li className="flex items-start gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0" />
+                          <span>Managing inference with Docker, GCP, vLLM & Runpod</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">HuggingFace</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">Docker</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">GCP</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">vLLM</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">FastAPI</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="p-4 hover:border-primary/50 transition-all duration-300 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 h-full">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-5 h-5 text-purple-500" />
+                    <div>
+                      <h4 className="text-lg font-semibold">Data Analyst & ML Developer</h4>
+                      <p className="text-xs text-muted-foreground">Apon Tech Ltd | Apr 2024 - Dec 2024</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="space-y-1">
+                      <p className="text-xs text-muted-foreground font-medium">Key Achievements:</p>
+                      <ul className="text-sm space-y-1">
+                        <li className="flex items-start gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
                           <span>Built Time Series models for demand analysis</span>
                         </li>
                         <li className="flex items-start gap-1.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
                           <span>Implemented CX segmentation & RFM analysis</span>
                         </li>
                         <li className="flex items-start gap-1.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-pink-500 mt-1.5 flex-shrink-0" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
                           <span>Led GCP migration & data warehousing</span>
                         </li>
                       </ul>
                     </div>
                     <div className="flex flex-wrap gap-1">
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">BigQuery</span>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">ML</span>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-pink-500/10">Looker</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10">BigQuery</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10">ML</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10">Looker</span>
                     </div>
                   </div>
                 </div>
@@ -439,32 +480,7 @@ export default function HomePage() {
               </Card>
             </motion.div>
 
-            <motion.div variants={fadeInUp}>
-              <Card className="p-4 hover:border-primary/50 transition-all duration-300 bg-gradient-to-br from-green-500/10 to-emerald-500/10 h-full">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-5 h-5 text-green-500" />
-                    <div>
-                      <h4 className="text-lg font-semibold">Junior Data Analyst</h4>
-                      <p className="text-xs text-muted-foreground">C & E IT Solution | Sep 2021 - Oct 2023</p>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm">Remote contractual position during Masters study</p>
-                    <div className="space-y-1">
-                      <p className="text-xs text-muted-foreground font-medium">Technologies:</p>
-                      <div className="flex flex-wrap gap-1">
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10">BigQuery</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10">Python</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10">PostgreSQL</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10">Firebase</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10">Power BI</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
+
 
             <motion.div variants={fadeInUp}>
               <Card className="p-4 hover:border-primary/50 transition-all duration-300 bg-gradient-to-br from-indigo-500/10 to-violet-500/10 h-full">
@@ -515,10 +531,10 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-2 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={staggerContainer}
           >
-            {/* NLP/RAG Chatbot */}
+            {/* Chatbot Development */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
               <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-purple-500/50">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -526,39 +542,19 @@ export default function HomePage() {
                   <div className="p-3 rounded-xl bg-purple-500/10 w-fit">
                     <Brain className="w-6 h-6 text-purple-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">NLP/RAG Chatbot</h3>
-                  <p className="text-muted-foreground">Building advanced conversational AI systems using NLP and Retrieval Augmented Generation for context-aware responses and knowledge retrieval.</p>
+                  <h3 className="text-xl font-semibold">Chatbot Development</h3>
+                  <p className="text-muted-foreground">Custom conversational AI solutions with advanced NLP, RAG integration, and API deployment using cutting-edge LLM technologies.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge>LangChain</Badge>
-                    <Badge>LLaMA</Badge>
-                    <Badge>Embeddings</Badge>
-                    <Badge>Vector DBs</Badge>
+                    <Badge>HuggingFace</Badge>
+                    <Badge>RAG</Badge>
+                    <Badge>LLM</Badge>
+                    <Badge>API</Badge>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Computer Vision */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
-              <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-blue-500/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative space-y-4">
-                  <div className="p-3 rounded-xl bg-blue-500/10 w-fit">
-                    <Code2 className="w-6 h-6 text-blue-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Computer Vision</h3>
-                  <p className="text-muted-foreground">Implementing image classification, object detection, and segmentation systems for various industries from healthcare to retail.</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge>OpenCV</Badge>
-                    <Badge>YOLO</Badge>
-                    <Badge>RCNN</Badge>
-                    <Badge>Image Processing</Badge>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Predictive Modeling */}
+            {/* ML Model Development */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5 }} className="group">
               <Card className="relative overflow-hidden p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-green-500/50">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -566,13 +562,13 @@ export default function HomePage() {
                   <div className="p-3 rounded-xl bg-green-500/10 w-fit">
                     <LineChart className="w-6 h-6 text-green-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">Predictive Modeling</h3>
-                  <p className="text-muted-foreground">Developing time series forecasting, recommendation systems, and customer behavior prediction models for data-driven decision making.</p>
+                  <h3 className="text-xl font-semibold">ML Model Development</h3>
+                  <p className="text-muted-foreground">End-to-end machine learning solutions including churn prediction, sales forecasting, and customer segmentation models with production deployment.</p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge>XGBoost</Badge>
-                    <Badge>Time Series</Badge>
-                    <Badge>scikit-learn</Badge>
-                    <Badge>Statistical Analysis</Badge>
+                    <Badge>Churn Prediction</Badge>
+                    <Badge>Sales Forecasting</Badge>
+                    <Badge>Customer Segmentation</Badge>
+                    <Badge>Model Deployment</Badge>
                   </div>
                 </div>
               </Card>
@@ -587,7 +583,7 @@ export default function HomePage() {
                     <Database className="w-6 h-6 text-orange-500" />
                   </div>
                   <h3 className="text-xl font-semibold">SaaS Development</h3>
-                  <p className="text-muted-foreground">Building scalable, cloud-native software solutions with robust architecture, subscription models, and multi-tenant capabilities.</p>
+                  <p className="text-muted-foreground">Scalable cloud-native software solutions with modern architecture, subscription models, and multi-tenant capabilities.</p>
                   <div className="flex flex-wrap gap-2">
                     <Badge>Next.js</Badge>
                     <Badge>Cloud Architecture</Badge>

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Code2, LineChart, GitBranch, GitCommit, GitPullRequest, Star, Brain, Database } from "lucide-react"
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Code2, LineChart, GitBranch, GitCommit, GitPullRequest, Star, Brain, Database, BookOpen } from "lucide-react"
 import { RiUserVoiceFill as SocialIcon } from "react-icons/ri"
 import Image from "next/image"
 import Link from "next/link"
@@ -81,34 +81,34 @@ const ProjectCarousel = ({ images }: { images: string[] }) => {
 // Core capabilities with enhanced descriptions
 const capabilities = [
   {
-    icon: Code2,
-    title: "Full Stack Development",
-    description: "Expert in building modern web applications with Next.js, React, and Node.js",
-    category: "web"
+    icon: Brain,
+    title: "Chatbot Development",
+    description: "Custom conversational AI solutions with RAG integration and LLM deployment",
+    category: "chatbot"
   },
   {
-    icon: Brain,
-    title: "AI & Machine Learning",
-    description: "Specialized in developing ML models and AI solutions for real-world problems",
-    category: "ai"
+    icon: Code2,
+    title: "ML Model Development",
+    description: "End-to-end machine learning solutions with production deployment",
+    category: "ml-models"
   },
   {
     icon: Database,
-    title: "Data Analytics",
-    description: "Proficient in transforming raw data into actionable business insights",
-    category: "data"
-  },
-  {
-    icon: Code2,
-    title: "SaaS Solutions",
-    description: "Building scalable, cloud-based software solutions for business efficiency",
+    title: "SaaS Development",
+    description: "Scalable cloud-native software solutions with modern architecture",
     category: "saas"
   },
   {
-    icon: SocialIcon,
-    title: "Digital Marketing",
-    description: "Strategic approach to social media marketing and brand growth",
-    category: "social"
+    icon: BookOpen,
+    title: "Colab Notebooks",
+    description: "Interactive ML notebooks and tutorials for data science",
+    category: "notebooks"
+  },
+  {
+    icon: Github,
+    title: "Kaggle Notebooks",
+    description: "Data science competitions and analysis notebooks",
+    category: "kaggle"
   }
 ]
 
@@ -371,7 +371,7 @@ export default function PortfolioPage() {
           My Projects
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          A showcase of my work in machine learning, data science, and web development.
+          A showcase of my work in AI engineering, chatbot development, ML models, and interactive notebooks.
         </p>
       </div>
 

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Our Services - RisadFindingPattern",
-  description: "Explore our comprehensive range of digital solutions including web development, data analytics, AI solutions, and creative design services.",
+  title: "AI & Development Services - RisadFindingPattern",
+  description: "Specialized AI engineering services including chatbot development, ML model development, and SaaS solutions with HuggingFace expertise.",
 }
 
 export default function ServicesLayout({
