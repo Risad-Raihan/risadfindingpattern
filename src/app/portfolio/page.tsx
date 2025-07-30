@@ -114,6 +114,24 @@ const capabilities = [
 
 const projects = [
   {
+    title: "CRM SQL Retriever Bot",
+    description: "A powerful AI chatbot that converts natural language questions into SQL queries using Llama 3.1 8B Instruct via RunPod's vLLM serverless endpoint. Features intelligent database querying, real-time business intelligence, and enterprise-grade security. Deployed on Google Cloud Run with auto-scaling capabilities and comprehensive API documentation.",
+    image: "/CRM.png",
+    technologies: [
+      "Llama 3.1 8B",
+      "FastAPI",
+      "RunPod",
+      "vLLM",
+      "Python",
+      "SQLite",
+      "Google Cloud Run",
+      "Docker"
+    ],
+    githubUrl: "https://github.com/Risad-Raihan/CRM-SQL-Retriever",
+    liveUrl: "https://sql-retriever-chatbot-rfx4y23izq-uc.a.run.app/static/index.html",
+    featured: true
+  },
+  {
     title: "MediBot: AI-Powered Medical Assistant with RAG",
     description: "An intelligent medical chatbot using Retrieval-Augmented Generation (RAG) technology to provide accurate medical information from trusted references. Integrates knowledge from medical textbooks with proper citations and source references. Features semantic search using vector embeddings, context-aware responses, and an intuitive chat interface.",
     image: "/medibot.png",
